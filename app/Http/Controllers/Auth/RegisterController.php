@@ -60,13 +60,19 @@ class RegisterController extends Controller
     public function registerPost(Request $request)
     {
         DB::beginTransaction();
+        // データベース更新処理
         try{
+            // 生年月日
             $old_year = $request->old_year;
             $old_month = $request->old_month;
             $old_day = $request->old_day;
             $data = $old_year . '-' . $old_month . '-' . $old_day;
             $birth_day = date('Y-m-d', strtotime($data));
-            $subjects = $request->subject;
+            // 役職が生徒を選んだ時、選択科目を選ばせる。→subjectsテーブルに保存する。
+            // →違う、科目そのものは選んでない。subjects_usersに保存する。
+            // $subjects = $request->subject;
+            // この書き方だと保存されてない。
+            $subjects = $request->input('subject');
 
             $user_get = User::create([
                 'over_name' => $request->over_name,
@@ -79,11 +85,17 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
+            // findOrFailメソッド=値がな時はエラーを返す
+            // ※findメソッド=値が無ければnullと返す。エラーの原因が突き止めやすくなるため、findOrFailメソッドの方が良い。
             $user = User::findOrFail($user_get->id);
+            // attachメソッド=中間テーブルにデータを挿入
+            // 多対多の処理の為複数形にする。
             $user->subjects()->attach($subjects);
+            // データベースに変更を保存
             DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){
+            // データベースの保存に失敗した時、処理を破棄する(更新前に戻す)
             DB::rollback();
             return redirect()->route('loginView');
         }
