@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use DB;
 
 use App\Models\Users\Subjects;
@@ -61,7 +62,7 @@ class RegisterController extends Controller
     {
         DB::beginTransaction();
         // データベース更新処理
-        try{
+        try {
             // 生年月日
             $old_year = $request->old_year;
             $old_month = $request->old_month;
@@ -70,8 +71,6 @@ class RegisterController extends Controller
             $birth_day = date('Y-m-d', strtotime($data));
             // 役職が生徒を選んだ時、選択科目を選ばせる。→subjectsテーブルに保存する。
             // →違う、科目そのものは選んでない。subjects_usersに保存する。
-            // $subjects = $request->subject;
-            // この書き方だと保存されてない。
             $subjects = $request->input('subject');
 
             $user_get = User::create([
@@ -85,16 +84,23 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
+            // dd($user_get);送れている確認
+
             // findOrFailメソッド=値がな時はエラーを返す
             // ※findメソッド=値が無ければnullと返す。エラーの原因が突き止めやすくなるため、findOrFailメソッドの方が良い。
             $user = User::findOrFail($user_get->id);
             // attachメソッド=中間テーブルにデータを挿入
-            // 多対多の処理の為複数形にする。
+            // ユーザーも科目も両方複数ある為多対多の処理の為複数形にする。
             $user->subjects()->attach($subjects);
+
+            //気が付いた。そもそも科目を選択していない(現状選択肢にないから出来てない。)から、NULLが返ってくる。上の処理を一度消したら登録とログインできてしまった。
+            // 科目の選択肢を作る所から次は行おうか！！
+
             // データベースに変更を保存
             DB::commit();
             return view('auth.login.login');
-        }catch(\Exception $e){
+        }
+        catch (\Exception $e) {
             // データベースの保存に失敗した時、処理を破棄する(更新前に戻す)
             DB::rollback();
             return redirect()->route('loginView');

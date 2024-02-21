@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authenticated\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Gate;
 use App\Models\Users\User;
@@ -20,7 +21,8 @@ class UsersController extends Controller
         $updown = $request->updown;
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = null;// ここで検索時の科目を受け取る
+        // 一番初めの新規登録時にメソッドがnullになった原因これ科目を取得できるようにする。
+        $subjects = $request->subject_id; // ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
