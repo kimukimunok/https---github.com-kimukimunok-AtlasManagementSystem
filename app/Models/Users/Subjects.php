@@ -15,7 +15,8 @@ class Subjects extends Model
         'subject'
     ];
 
+    // (リレーション先のモデル名,リレーション先のテーブル名、自モデルの主キー、相手モデルの主キー)
     public function users(){
-        return;// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\User', 'subject_users', 'subject_id', 'user_id');
     }
 }
