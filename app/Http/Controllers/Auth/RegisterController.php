@@ -10,9 +10,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+// 以下バリデーションを使う為の記述
 use App\Http\Requests\RegisterRequest;
 use DB;
-
 
 class RegisterController extends Controller
 {
@@ -58,7 +58,8 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
+    // バリデーション(RegisterRequest)を使う為、下のメソッドを編集
+    public function registerPost(RegisterRequest $request)
     {
         DB::beginTransaction();
         // データベース更新処理
