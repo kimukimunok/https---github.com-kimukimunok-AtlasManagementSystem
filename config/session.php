@@ -30,10 +30,12 @@ return [
     | to immediately expire on the browser closing, set that option.
     |
     */
-
+    //セッション有効期限の時間、デフォルトは120(2時間)
+    // タスクでの確認の為、1にする。
     'lifetime' => env('SESSION_LIFETIME', 120),
 
     'expire_on_close' => false,
+    // php artisan config:cache
 
     /*
     |--------------------------------------------------------------------------
