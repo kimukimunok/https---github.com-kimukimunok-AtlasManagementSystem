@@ -14,3 +14,10 @@ sidebar.bladeのスクール予約一覧と、スクール枠登録の部分を�
 
 ・いいねの数を表示させる。
 リレーションに苦戦～hasmany('app\model'～)だと取得できないのはなんでなんだろうかね。ちょっと分からない。
+
+・コメントの数を表示させる。
+表示はできた。次はバリデーション。次も子クラス作って指定していく感じかな。
+php artisan make:request PostCommentRequest実行
+
+Cannot declare class App\Http\Requests\PostCommentRequest, because the name is already in useこのエラーまた出た
+対策調べる。

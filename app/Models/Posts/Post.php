@@ -20,6 +20,7 @@ class Post extends Model
         return $this->belongsTo('App\Models\Users\User');
     }
 
+    // PostCommentとのリレーション
     public function postComments()
     {
         return $this->hasMany('App\Models\Posts\PostComment');
@@ -30,7 +31,7 @@ class Post extends Model
         // リレーションの定義
     }
 
-    // コメント数
+    // コメント数のカウント
     public function commentCounts($post_id)
     {
         return Post::with('postComments')->find($post_id)->postComments();

@@ -13,7 +13,8 @@
             <div class="post_bottom_area d-flex">
                 <div class="d-flex post_status">
                     <div class="mr-5">
-                        <i class="fa fa-comment"></i><span class=""></span>
+                        <!-- まずここでコメントの数を表示させる。 -->
+                        <i class="fa fa-comment"></i><span class="">{{$post->postComments->count()}}</span>
                     </div>
                     <div>
                         <!-- ここにいいねされた数を表示する記述をのせる。post->likes->count() とはデータを取得する記述 -->
