@@ -11,3 +11,6 @@ https://codelikes.com/laravel-validation-message-ja/#google_vignette
 ２サイドバーの表示権限が出来てない。生徒に表示されている。
 →講師と生徒の番号を勘違いしていた。
 sidebar.bladeのスクール予約一覧と、スクール枠登録の部分を直して完了
+
+・いいねの数を表示させる。
+リレーションに苦戦～hasmany('app\model'～)だと取得できないのはなんでなんだろうかね。ちょっと分からない。
