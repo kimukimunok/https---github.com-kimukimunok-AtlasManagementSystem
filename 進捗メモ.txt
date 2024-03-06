@@ -1,0 +1,5 @@
+現状、編集ボタン、削除ボタン着手中
+編集ボタンと、削除ボタンは機能確認している。OK
+あとはバリデーションを進める。
+以前のphp artisan make:request RegisterRequestでバリデーションの為の子クラスを作成（新規作成の時のバリデーションクラス）これを元に編集用(postEditDeleteRequest?)を作る.
+fromrequestでバリデーション作った時は、controllerのuseとメソッド、bladeは@ifでエラー文の表示の分追加を忘れないようにする。

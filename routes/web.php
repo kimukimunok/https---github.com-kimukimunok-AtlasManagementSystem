@@ -11,6 +11,9 @@
 |
 // コミット用
 */
+
+use App\Models\Posts\PostComment;
+
 Route::group(['middleware' => ['guest']], function () {
     Route::namespace('Auth')->group(function () {
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
@@ -40,17 +43,32 @@ Route::group(['middleware' => 'auth'], function () {
             });
         });
         Route::namespace('BulletinBoard')->group(function () {
+            // 投稿一覧の表示
             Route::get('/bulletin_board/posts/{keyword?}', 'PostsController@show')->name('post.show');
             Route::get('/bulletin_board/input', 'PostsController@postInput')->name('post.input');
+            // いいねした投稿
             Route::get('/bulletin_board/like', 'PostsController@likeBulletinBoard')->name('like.bulletin.board');
             Route::get('/bulletin_board/my_post', 'PostsController@myBulletinBoard')->name('my.bulletin.board');
+            // 投稿を作る
             Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');
+            // メインカテゴリーの追加
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
+            // サブカテゴリーの追加
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
+
+            // // サブカテゴリーの投稿を取得
+            // Route::get('/bulletin_board/sub_category/{sub_category_id},
+            // PostsController@subCategoryCreate')->name('subcategory.bulletin.board');
+
+            // 投稿内容
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');
+            // 投稿編集
             Route::post('/bulletin_board/edit', 'PostsController@postEdit')->name('post.edit');
+            // 投稿削除
             Route::get('/bulletin_board/delete/{id}', 'PostsController@postDelete')->name('post.delete');
+            // 投稿のコメント
             Route::post('/comment/create', 'PostsController@commentCreate')->name('comment.create');
+            // 投稿のいいねと、その削除
             Route::post('/like/post/{id}', 'PostsController@postLike')->name('post.like');
             Route::post('/unlike/post/{id}', 'PostsController@postUnLike')->name('post.unlike');
         });
