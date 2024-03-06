@@ -3,3 +3,11 @@
 あとはバリデーションを進める。
 以前のphp artisan make:request RegisterRequestでバリデーションの為の子クラスを作成（新規作成の時のバリデーションクラス）これを元に編集用(postEditDeleteRequest?)を作る.
 fromrequestでバリデーション作った時は、controllerのuseとメソッド、bladeは@ifでエラー文の表示の分追加を忘れないようにする。
+修正項目
+１バリデーションを日本語化していない
+https://codelikes.com/laravel-validation-message-ja/#google_vignette
+上のサイト参考にエラー表示全体を日本語化した。
+ついでにタイムゾーンも日本にした。
+２サイドバーの表示権限が出来てない。生徒に表示されている。
+→講師と生徒の番号を勘違いしていた。
+sidebar.bladeのスクール予約一覧と、スクール枠登録の部分を直して完了

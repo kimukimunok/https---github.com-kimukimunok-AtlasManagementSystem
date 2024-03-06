@@ -26,12 +26,12 @@
             <!-- ・スクール予約確認と・スクール枠登録を講師のみに表示させるようにしたい→講師のみがみられるようにauth設定をする。 -->
             <!-- 講師とそれ以外の違いは何か？＝役職が講師か生徒か→DBだと権限ナンバー？、生徒が”１”で講師が”４” -->
             @auth
-            <!-- 講師(権限が4)の時authの範囲内を表示する。 -->
-            @if(Auth::user()->role == 4)
+            <!-- 講師(権限が1)の時authの範囲内を表示する。 -->
+            @if(Auth::user()->role == 1)
             <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
             <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
             @endif
-            @endauth
+            @endAuth
             <p><a href="{{ route('post.show') }}">掲示板</a></p>
             <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
             @show
