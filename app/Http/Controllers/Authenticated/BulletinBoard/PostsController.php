@@ -13,6 +13,8 @@ use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostEditRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\MainCategoryRequest;
+use App\Http\Requests\SubCategoryRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -81,14 +83,14 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
     // メインカテゴリーの追加
-    public function mainCategoryCreate(Request $request)
+    public function mainCategoryCreate(MainCategoryRequest $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
 
     // サブカテゴリーの追加
-    public function subCategoryCreate(Request $request)
+    public function subCategoryCreate(SubCategoryRequest $request)
     {
         // 元々あるメインカテゴリー(ID)を選び取得して、サブカテゴリーを送るようにしたい。
         $mainCategoryId = $request->input('main_category_id');

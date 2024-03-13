@@ -39,7 +39,12 @@ postscontollerにサブカテゴリー追加と、サブカテゴリー登録の
 
 
 ２■バリデーションの条件は「簡易基本設計書」を参照
-→php artisan make:request SubcategoryRequestかな
+→
+php artisan make:request SubCategoryRequest
+php artisan make:request MainCategoryRequest
+実行
+
+なんかバリデーション通りに記述するとエラー出る。何かあるみたい。調べる。
 
 ３■新規投稿時、サブカテゴリーも登録できるようにする
 →

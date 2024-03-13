@@ -28,7 +28,7 @@ class PostEditRequest extends FormRequest
         return [
             // カテゴリーは選ばないから、タイトルと投稿内容のみ
             'post_title' => 'required| string | max:100',
-            'post_body' => 'required | string | max:5',
+            'post_body' => 'required | string | max:5000',
         ];
     }
     public function messages()
