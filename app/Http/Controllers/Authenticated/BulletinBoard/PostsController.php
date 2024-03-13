@@ -62,6 +62,7 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
         return redirect()->route('post.show');
     }
     // 投稿編集
@@ -85,6 +86,24 @@ class PostsController extends Controller
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
+
+    // サブカテゴリーの追加
+    public function subCategoryCreate(Request $request)
+    {
+        // 元々あるメインカテゴリー(ID)を選び取得して、サブカテゴリーを送るようにしたい。
+        $mainCategoryId = $request->input('main_category_id');
+        $subCategoryName = $request->input('sub_category_name');
+
+        // サブカテゴリーへ追加、登録
+        $subCategory = new SubCategory();
+        $subCategory->main_category_id = $mainCategoryId;
+        $subCategory->sub_category = $subCategoryName;
+        // 保存
+        $subCategory->save();
+        return redirect()->route('post.input');
+    }
+
+
     // 投稿へのコメントを作成
     public function commentCreate(CommentRequest $request)
     {

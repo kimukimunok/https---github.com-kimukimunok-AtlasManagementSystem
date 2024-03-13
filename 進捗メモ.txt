@@ -21,3 +21,29 @@ php artisan make:request PostCommentRequest実行
 
 Cannot declare class App\Http\Requests\PostCommentRequest, because the name is already in useこのエラーまた出た
 対策調べる。
+
+さてここからが問題のサブカテゴリー追加とは。
+・まず、メインカテゴリーと同じような構造の物をメインカテゴリーの下に作る
+改修内容どんな？
+■サブカテゴリーを登録する機能を追加する
+■バリデーションの条件は「簡易基本設計書」を参照
+■新規投稿時、サブカテゴリーも登録できるようにする
+
+１■サブカテゴリーを登録する機能を追加する
+→リレーションを駆使し、メインカテゴリーの中にサブカテゴリーの名前を登録する。
+メインカテゴリーIDにサブカテゴリーNAMEをいれる。繋ぐ？
+postscontollerにサブカテゴリー追加と、サブカテゴリー登録の記述をしてみた。
+追加ボタンが機能してない。（bladeか？）
+次、メインカテゴリーととサブカテゴリーに追加することが出来たから、次は投稿するときのカテゴリーに登録できるようにしたい。
+がその前にバリデーションを作る事
+
+
+２■バリデーションの条件は「簡易基本設計書」を参照
+→php artisan make:request SubcategoryRequestかな
+
+３■新規投稿時、サブカテゴリーも登録できるようにする
+→
+
+使う所
+postsBladeとpostsCreateとpostsController
+メインカテゴリーIDにサブカテゴリー名前を登録する。
