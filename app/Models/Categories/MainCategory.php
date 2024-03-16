@@ -11,9 +11,10 @@ class MainCategory extends Model
     protected $fillable = [
         'main_category'
     ];
-
+// 一対多hasMany
     public function subCategories(){
-        // リレーションの定義
+        // メインとサブのリレーションの定義
+        return $this->
+        hasMany('App\Models\Categories\SubCategory');
     }
-
 }

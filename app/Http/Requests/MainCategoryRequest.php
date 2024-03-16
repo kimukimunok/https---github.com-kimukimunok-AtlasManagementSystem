@@ -25,7 +25,7 @@ class MainCategoryRequest extends FormRequest
     {
         return [
             'main_category_name' =>'required|string|max:100|unique:main_category_name',
-            
+
             'main_category_id' => 'required|exists:main_categories,id',
         ];
     }
@@ -34,7 +34,7 @@ class MainCategoryRequest extends FormRequest
     {
         return [
             'main_category_name.required' => 'メインカテゴリー名は必須です。',
-            'main_category_name.unique' => '入力されたメインカテゴリーはすでに登録済みです。',
+            'main_category_name.unique' => '入力されたメインカテゴリーは既に登録済みです。',
         ];
     }
 }
