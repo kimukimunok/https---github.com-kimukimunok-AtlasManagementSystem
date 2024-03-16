@@ -62,8 +62,6 @@
             @if($errors->first('sub_category_name'))
             <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
             @endif
-
-            <!-- サブカテゴリー追加 -->
             <p class="mb-0">サブカテゴリー</p>
             <select class="w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
                 <option value="">---</option>

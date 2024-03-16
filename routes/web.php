@@ -55,11 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
             // サブカテゴリーの追加
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
-
-            // // サブカテゴリーの投稿を取得
-            // Route::get('/bulletin_board/sub_category/{sub_category_id},
-            // PostsController@subCategoryCreate')->name('subcategory.bulletin.board');
-
             // 投稿内容
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');
             // 投稿編集
