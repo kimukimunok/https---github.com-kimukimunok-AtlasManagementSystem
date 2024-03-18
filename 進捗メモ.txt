@@ -22,7 +22,9 @@ php artisan make:request PostCommentRequest実行
 Cannot declare class App\Http\Requests\PostCommentRequest, because the name is already in useこのエラーまた出た
 対策調べる。
 
-さてここからが問題のサブカテゴリー追加とは。
+
+
+問題のサブカテゴリー追加とは。
 ・まず、メインカテゴリーと同じような構造の物をメインカテゴリーの下に作る
 改修内容どんな？
 ■サブカテゴリーを登録する機能を追加する
@@ -31,6 +33,7 @@ Cannot declare class App\Http\Requests\PostCommentRequest, because the name is a
 
 １■サブカテゴリーを登録する機能を追加する
 →リレーションを駆使し、メインカテゴリーの中にサブカテゴリーの名前を登録する。
+
 メインカテゴリーIDにサブカテゴリーNAMEをいれる。繋ぐ？
 postscontollerにサブカテゴリー追加と、サブカテゴリー登録の記述をしてみた。
 追加ボタンが機能してない。（bladeか？）
@@ -43,15 +46,34 @@ postscontollerにサブカテゴリー追加と、サブカテゴリー登録の
 php artisan make:request SubCategoryRequest
 php artisan make:request MainCategoryRequest
 実行
+・firstは最初の値を取得する為複数のエラーメッセージを表示できない。
+・hasは複数のエラーメッセージを表示できる。
 
 なんかバリデーション通りに記述するとエラー出る。何かあるみたい。調べる。修正
 ???リレーション多対多した。
 コントローラー記述してみた。
 ブレードも見た。
 次は何だ。
+
+Laravelは基本はテーブル名は複数形、モデル名は単数形で作成します。
+テーブル名は複数形を用いる
+Model名はテーブル名の単数形を使う
+コントローラー名はテーブル名の単数形+Controllerとする
+
+！！！！！！！！バリデーション部分に問題がある！！！！！！！！！！！
+バリデーション記述するとテーブルノットファウンドが出たからフォームリクエスト部分に何かしらの問題がある。
+サブカテゴリーとかメインカテゴリーが単数形か複数形かの問題だった。
+
 ３■新規投稿時、サブカテゴリーも登録できるようにする
 →
 
 使う所
 postsBladeとpostsCreateとpostsController
 メインカテゴリーIDにサブカテゴリー名前を登録する。
+
+
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'atlasmanagementsystem.main_category_name' doesn't exist (SQL: select count(*) as aggregate from `main_category_name` where `main_category_name` = 一つ目)
+A table was not found
+
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub_category_name' in 'where clause' (SQL: select count(*) as aggregate from `sub_categories` where `sub_category_name` = 一つ目に追加)
+A column was not found

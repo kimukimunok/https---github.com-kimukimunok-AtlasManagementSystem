@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MainCategory extends Model
 {
-    const UPDATED_AT = null;
-    const CREATED_AT = null;
+    // 更新時間のエラー出た為以下記述
+    public $timestamps = false;
+    // const UPDATED_AT = null;
+    // const CREATED_AT = null;
     protected $fillable = [
         'main_category'
     ];
