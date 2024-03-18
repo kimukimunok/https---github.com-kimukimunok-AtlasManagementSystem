@@ -50,18 +50,18 @@
     <div class="w-25 ml-auto mr-auto">
         <div class="category_area mt-5 p-5">
             <div class="">
-                @if($errors->first('main_category_name'))
-                <span class="error_message">{{ $errors->first('main_category_name') }}</span>
-                @endif
+                <!-- @if($errors->first('main_category_name')) -->
+                <!-- <span class="error_message">{{ $errors->first('main_category_name') }}</span> -->
+                <!-- @endif -->
                 <p class="m-0">メインカテゴリー</p>
                 <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
                 <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
             </div>
 
             <!--サブカテゴリーを追加 -->
-            @if($errors->first('sub_category_name'))
-            <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
-            @endif
+            <!-- @if($errors->first('sub_category_name')) -->
+            <!-- <span class="error_message">{{ $errors->first('sub_category_name') }}</span> -->
+            <!-- @endif -->
             <p class="mb-0">サブカテゴリー</p>
             <select class="w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
                 <option value="">---</option>
@@ -74,7 +74,7 @@
             <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
 
             <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm">
-            <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
+            <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm" id="subCategoryInput">
         </div>
     </div>
     @endcan
