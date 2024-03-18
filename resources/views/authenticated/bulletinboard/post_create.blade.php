@@ -52,6 +52,10 @@
                 @if($errors->has('main_category_name'))
                 <span class="error_message">{{ $errors->first('main_category_name') }}</span>
                 @endif
+                @if($errors->has('main_category_id'))
+                <span class="error_message">{{ $errors->first('main_category_id') }}</span>
+                @endif
+
 
                 <p class="m-0">メインカテゴリー</p>
                 <input type="text" class="w-100" name="main_category_name" form="mainCategoryFrom" id="mainCategoryInput">
@@ -76,7 +80,7 @@
                 <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
             </div>
         </div>
-        @endcan
+        @endCan
         <!-- 管理者権限画面ここまで -->
     </div>
-    @endsection
+    @endSection

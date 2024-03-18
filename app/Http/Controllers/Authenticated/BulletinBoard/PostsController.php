@@ -41,19 +41,19 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinBoard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
     public function postDetail($post_id)
     {
         $post = Post::with('user', 'postComments')->findOrFail($post_id);
-        return view('authenticated.bulletinboard.post_detail', compact('post'));
+        return view('authenticated.bulletinBoard.post_detail', compact('post'));
     }
 
     public function postInput()
     {
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        return view('authenticated.bulletinBoard.post_create', compact('main_categories'));
     }
     // 投稿作成
     public function postCreate(PostFormRequest $request)
@@ -86,13 +86,15 @@ class PostsController extends Controller
 
     // メインカテゴリーの追加
     public function mainCategoryCreate(MainCategoryRequest $request)
+    // public function mainCategoryCreate(Request $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
-        dd($request);
+    
         return redirect()->route('post.input');
     }
     // サブカテゴリーの追加
     public function subCategoryCreate(SubCategoryRequest $request)
+    // public function subCategoryCreate(Request $request)
     {
 
         // 元々あるメインカテゴリー(ID)を選び取得して、サブカテゴリーを送るようにしたい。
@@ -124,7 +126,7 @@ class PostsController extends Controller
     {
         $posts = Auth::user()->posts()->get();
         $like = new Like;
-        return view('authenticated.bulletinboard.post_myself', compact('posts', 'like'));
+        return view('authenticated.bulletinBoard.post_myself', compact('posts', 'like'));
     }
     // いいねした投稿
     public function likeBulletinBoard()
@@ -132,7 +134,7 @@ class PostsController extends Controller
         $like_post_id = Like::with('users')->where('like_user_id', Auth::id())->get('like_post_id')->toArray();
         $posts = Post::with('user')->whereIn('id', $like_post_id)->get();
         $like = new Like;
-        return view('authenticated.bulletinboard.post_like', compact('posts', 'like'));
+        return view('authenticated.bulletinBoard.post_like', compact('posts', 'like'));
     }
     // いいねする機能
     public function postLike(Request $request)

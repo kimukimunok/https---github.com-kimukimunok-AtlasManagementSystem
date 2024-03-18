@@ -25,16 +25,15 @@ class MainCategoryRequest extends FormRequest
     {
         return [
             'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
-
-            'main_category_id' => 'required|exists:main_category,id',
+            // 'main_category_id' => 'required'
         ];
     }
-
+    // |exists:main_category,id
     public function messages()
     {
         return [
             'main_category_name.required' => 'メインカテゴリー名は必須です。',
-            'main_category_name.unique' => '入力されたメインカテゴリーは既に登録済みです。',
+            'main_category_name.unique' => '入力されたメインカテゴリーは既に登録済みです。'
         ];
     }
 }

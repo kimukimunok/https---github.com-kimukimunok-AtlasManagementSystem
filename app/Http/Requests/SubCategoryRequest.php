@@ -24,24 +24,21 @@ class SubCategoryRequest extends FormRequest
     public function rules()
     {
         $mainCategoryId = $this->input('main_category_id');
-
-        // この部分のsub_category_nameが悪さしている。
         return [
             'sub_category_name' =>
             'required|
                 |string|
-                |max:100|exists:sub_categories,sub_category',
-
+                |max:100'
         ];
     }
-
+    // |exists:sub_categories,sub_category
     public function messages()
     {
         return [
             'sub_category_name.required' => 'サブカテゴリー名は必須です。',
             'sub_category_name.max' => 'サブカテゴリー名は100文字以内で入力してください。',
             'sub_category_name.string' => 'サブカテゴリー名は文字列で入力してください。',
-            'sub_category_name.unique' => '同じ名前のサブカテゴリーはすでに存在します。',
+            'sub_category_name.unique' => '同じ名前のサブカテゴリーはすでに存在します。'
         ];
     }
 }
