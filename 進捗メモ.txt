@@ -22,8 +22,6 @@ php artisan make:request PostCommentRequest実行
 Cannot declare class App\Http\Requests\PostCommentRequest, because the name is already in useこのエラーまた出た
 対策調べる。
 
-
-
 問題のサブカテゴリー追加とは。
 ・まず、メインカテゴリーと同じような構造の物をメインカテゴリーの下に作る
 改修内容どんな？
@@ -81,3 +79,15 @@ create.bladeとcontlloer内のmain_category_nameで指定している部分をma
 
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub_category_name' in 'where clause' (SQL: select count(*) as aggregate from `sub_categories` where `sub_category_name` = 一つ目に追加)
 A column was not found
+
+
+3/18
+メインカテゴリーとサブカテゴリーが追加できるようになった。
+３■新規投稿時、サブカテゴリーも登録できるようにする
+→新規投稿の中でサブカテゴリーを選択できるようにする。
+
+メイン、サブと選べるようにして、サブカテゴリー内に投稿を登録するようにする。みたいな
+
+ポストクリエイト（ブレード側）に選択肢を表示させる。(foreachか)
+foreachとoptionvalueを駆使して表示はできた。
+まずはポストコントローラーのpostcreate

@@ -9,13 +9,19 @@
             @if($errors->first('post_category_id'))
             <span class="error_message">{{ $errors->first('post_category_id') }}</span>
             @endif
+            <!-- サブカテゴリーを選択できるようにする。 -->
             <p class="mb-0">カテゴリー</p>
             <!-- selectは選択できるようにしている。 -->
             <select class="w-100" form="postCreate" name="post_category_id">
-
                 @foreach($main_categories as $main_category)
                 <!-- optgroupとは選択肢グループ要素→選択肢の中で大枠選択肢として表示させる。＝メインカテゴリーが大枠でサブカテゴリーが中枠みたいな -->
-                <optgroup label="{{ $main_category->main_category }}"></optgroup>
+                <optgroup label="{{ $main_category->main_category }}">
+                    <!-- メインカテゴリー(一つ)に登録されたサブカテゴリー(多数)のサブカテゴリーを出したい -->
+                    @foreach ( $main_category->subcategories as $sub_category)
+                    <!-- option value=(ID名)で、サブカテゴリーの情報を取得している -->
+                    <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
+                    @endforeach
+                </optgroup>
                 @endforeach
             </select>
         </div>
@@ -67,6 +73,7 @@
                 @endif
                 <p class="mb-0">サブカテゴリー</p>
                 <select class="w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
+                    <!-- ---で選択無しを表示 -->
                     <option value="">---</option>
                     @foreach($main_categories as $main_category)
                     <!-- メインカテゴリー内にサブカテゴリーを入れる。→option value=(ID名)で、メインカテゴリーの情報を取得する→value="○○"はメインのid -->
