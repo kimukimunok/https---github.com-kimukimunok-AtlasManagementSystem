@@ -25,11 +25,12 @@ class SubCategoryRequest extends FormRequest
     {
         $mainCategoryId = $this->input('main_category_id');
 
+        // この部分のsub_category_nameが悪さしている。
         return [
-            'sub_category_name' =>
+            'sub_categories_name' =>
                 'required|
                 |string|
-                |max:100|exists:sub_categories,name',,
+                |max:100|exists:sub_categories',
 
         ];
     }
@@ -37,10 +38,10 @@ class SubCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'sub_category_name.required' => 'サブカテゴリー名は必須です。',
-            'sub_category_name.max' => 'サブカテゴリー名は100文字以内で入力してください。',
-            'sub_category_name.string' => 'サブカテゴリー名は文字列で入力してください。',
-            'sub_category_name.unique' => '同じ名前のサブカテゴリーはすでに存在します。',
+            'sub_categories_name.required' => 'サブカテゴリー名は必須です。',
+            'sub_categories_name.max' => 'サブカテゴリー名は100文字以内で入力してください。',
+            'sub_categories_name.string' => 'サブカテゴリー名は文字列で入力してください。',
+            'sub_categories_name.unique' => '同じ名前のサブカテゴリーはすでに存在します。',
         ];
     }
 }

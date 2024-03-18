@@ -24,7 +24,7 @@ class MainCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'main_category_name' =>'required|string|max:100|unique:main_category_name',
+            'main_categories_name' => 'required|string|max:100|unique:main_category_name',
 
             'main_category_id' => 'required|exists:main_categories,id',
         ];
@@ -33,8 +33,8 @@ class MainCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'main_category_name.required' => 'メインカテゴリー名は必須です。',
-            'main_category_name.unique' => '入力されたメインカテゴリーは既に登録済みです。',
+            'main_categories_name.required' => 'メインカテゴリー名は必須です。',
+            'main_categories_name.unique' => '入力されたメインカテゴリーは既に登録済みです。',
         ];
     }
 }
