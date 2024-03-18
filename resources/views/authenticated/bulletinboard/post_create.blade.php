@@ -44,41 +44,39 @@
     <!-- 今回の場合、メインカテゴリーとサブカテゴリーの追加がそう。 -->
     @can('admin')
 
-    <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
+    <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryFrom">{{ csrf_field() }}</form>
     <div class="w-25 ml-auto mr-auto">
         <div class="category_area mt-5 p-5">
             <div class="">
                 <!-- メインカテゴリーの追加 -->
-                @if($errors->has('main_categories_name'))
-                <span class="error_message">{{ $errors->first('main_categories_name') }}</span>
+                @if($errors->has('main_category_name'))
+                <span class="error_message">{{ $errors->first('main_category_name') }}</span>
                 @endif
 
                 <p class="m-0">メインカテゴリー</p>
-                <input type="text" class="w-100"
-                name="main_category" form="mainCategoryCreate">
-                <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
+                <input type="text" class="w-100" name="main_category_name" form="mainCategoryFrom" id="mainCategoryInput">
+                <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryFrom">
+
+                <!--サブカテゴリーを追加 -->
+                @if($errors->has('sub_category_name'))
+                <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
+                @endif
+                <p class="mb-0">サブカテゴリー</p>
+                <select class="w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
+                    <option value="">---</option>
+                    @foreach($main_categories as $main_category)
+                    <!-- メインカテゴリー内にサブカテゴリーを入れる。→option value=(ID名)で、メインカテゴリーの情報を取得する→value="○○"はメインのid -->
+                    <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
+                    @endforeach
+                </select>
+
+                <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
+
+                <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm" id="subCategoryInput">
+                <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
             </div>
-
-            <!--サブカテゴリーを追加 -->
-            @if($errors->has('sub_categories_name'))
-            <span class="error_message">{{ $errors->first('sub_categories_name') }}</span>
-            @endif
-            <p class="mb-0">サブカテゴリー</p>
-            <select class="w-100" form="subCategoryForm" name="main_category_id">
-                <option value="">---</option>
-                @foreach($main_categories as $main_category)
-                <!-- メインカテゴリー内にサブカテゴリーを入れる。→option value=(ID名)で、メインカテゴリーの情報を取得する→value="○○"はメインのid -->
-                <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
-                @endforeach
-            </select>
-
-            <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
-
-            <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm" id="subCategoryInput">
-            <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
         </div>
+        @endcan
+        <!-- 管理者権限画面ここまで -->
     </div>
-    @endcan
-    <!-- 管理者権限画面ここまで -->
-</div>
-@endsection
+    @endsection

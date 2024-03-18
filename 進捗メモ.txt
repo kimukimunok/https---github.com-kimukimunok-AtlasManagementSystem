@@ -74,6 +74,10 @@ postsBladeとpostsCreateとpostsController
 
 SQLSTATE[42S02]: Base table or view not found: 1146 Table 'atlasmanagementsystem.main_category_name' doesn't exist (SQL: select count(*) as aggregate from `main_category_name` where `main_category_name` = 一つ目)
 A table was not found
+そもそも、main_category_nameっていうテーブルが無いよーっていうエラーだからあるテーブルを指定すればいい。テーブル「main_categories」フィールド「id」「main_category」「created_at」がある
+create.bladeとcontlloer内のmain_category_nameで指定している部分をmain_categoriesに変更。
+
+エラーで検索すると入力規則を変えたりとかfromrequest無いを変えればいいとか出たけどやったが解消せず
 
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sub_category_name' in 'where clause' (SQL: select count(*) as aggregate from `sub_categories` where `sub_category_name` = 一つ目に追加)
 A column was not found

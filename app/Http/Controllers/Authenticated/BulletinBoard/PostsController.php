@@ -84,25 +84,17 @@ class PostsController extends Controller
     }
 
 
-
-
-
     // メインカテゴリーの追加
     public function mainCategoryCreate(MainCategoryRequest $request)
-    // public function mainCategoryCreate(Request $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
-        // dd($request);
-        // 処理後の帰り先
+        dd($request);
         return redirect()->route('post.input');
     }
-
-
     // サブカテゴリーの追加
     public function subCategoryCreate(SubCategoryRequest $request)
-    // public function subCategoryCreate(Request $request)
     {
-        // dd($request);
+
         // 元々あるメインカテゴリー(ID)を選び取得して、サブカテゴリーを送るようにしたい。
         $mainCategoryId = $request->input('main_category_id');
         $subCategoryName = $request->input('sub_category_name');
