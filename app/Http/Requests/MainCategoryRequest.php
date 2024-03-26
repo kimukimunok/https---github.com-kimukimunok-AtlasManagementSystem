@@ -33,6 +33,7 @@ class MainCategoryRequest extends FormRequest
     {
         return [
             'main_category_name.required' => 'メインカテゴリー名は必須です。',
+            'main_category_name.max' => 'メインカテゴリー名は100文字以内で入力してください。',
             'main_category_name.unique' => '入力されたメインカテゴリーは既に登録済みです。'
         ];
     }

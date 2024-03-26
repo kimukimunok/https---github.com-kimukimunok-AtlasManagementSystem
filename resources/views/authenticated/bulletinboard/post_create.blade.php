@@ -82,7 +82,6 @@
                 </select>
 
                 <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
-
                 <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm" id="subCategoryInput">
                 <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
             </div>

@@ -1,9 +1,5 @@
-$(function () {
-  $('.main_categories').click(function () {
-    var category_id = $(this).attr('category_id');
-    $('.category_num' + category_id).slideToggle();
-  });
 
+// like=いいねする機能
   $(document).on('click', '.like_btn', function (e) {
     e.preventDefault();
     $(this).addClass('un_like_btn');
@@ -25,7 +21,7 @@ $(function () {
       console.log('fail');
     });
   });
-
+    //un_like=いいねを外す機能。
   $(document).on('click', '.un_like_btn', function (e) {
     e.preventDefault();
     $(this).removeClass('un_like_btn');
@@ -47,7 +43,7 @@ $(function () {
 
     });
   });
-
+    // edit=投稿編集のJS
   $('.edit-modal-open').on('click',function(){
     $('.js-modal').fadeIn();
     var post_title = $(this).attr('post_title');
@@ -63,4 +59,20 @@ $(function () {
     return false;
   });
 
+// カテゴリーのアコーディオンメニュー
+// メインカテゴリー
+    $(function () {
+  $('.main_categories').click(function () {
+    var category_id = $(this).attr('category_id');
+    $('.category_num' + category_id).slideToggle();
+  });
+        // サブカテゴリー
+     $(document).ready(function () {
+   $(".accordion-push-js").click(function () {
+      var targetId = $(this).data("target");
+      var subCategories = $("[data-category='" + targetId + "']");
+      subCategories.slideToggle();
+      $(this).toggleClass("open");
+    });
+  });
 });

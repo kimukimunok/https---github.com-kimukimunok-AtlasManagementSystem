@@ -22,21 +22,35 @@ class PostsController extends Controller
     // 投稿を表示
     public function show(Request $request)
     {
+        // $post=投稿
         $posts = Post::with('user', 'postComments')->get();
+        // categories=メインカテゴリーのみ(ここにサブカテゴリー追加？)
         $categories = MainCategory::get();
+        SubCategory::get();
+        // like=いいね
         $like = new Like;
+        // post_comment=投稿へのコメント
         $post_comment = new Post;
+        // 検索箇所
+        // 検索ワードが入力されていた時
         if (!empty($request->keyword)) {
             $posts = Post::with('user', 'postComments')
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('post', 'like', '%' . $request->keyword . '%')->get();
-        } else if ($request->category_word) {
+            // サブカテゴリーを検索できるようにする。orWhereで条件追加！！！！！
+            // ->oiWhere();
+            // カテゴリーワードの検索
+        } else if ($request->category_word)
+        //一覧のサブカテゴリーが選択されたとき
+        {
             $sub_category = $request->category_word;
             $posts = Post::with('user', 'postComments')->get();
+            // いいねした投稿が選択されたとき
         } else if ($request->like_posts) {
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
                 ->whereIn('id', $likes)->get();
+                // 自分の投稿が選択されたとき
         } else if ($request->my_posts) {
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
@@ -64,9 +78,14 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        // 投稿にサブカテゴリーを加えたい。
+        // userとpostの間にsubcategoryを入れたい→中間テーブルに挿入（attach）を使用。
+        // 投稿の中にpost_category_id(name属性)のサブカテゴリーを入れている。
+        $post->subcategories()->attach($request->post_category_id);
 
         return redirect()->route('post.show');
     }
+
     // 投稿編集
     public function postEdit(PostEditRequest $request)
     {
@@ -89,7 +108,7 @@ class PostsController extends Controller
     // public function mainCategoryCreate(Request $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
-    
+
         return redirect()->route('post.input');
     }
     // サブカテゴリーの追加
