@@ -38,19 +38,28 @@ class PostsController extends Controller
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('post', 'like', '%' . $request->keyword . '%')->get();
             // サブカテゴリーを検索できるようにする。orWhereで条件追加！！！！！
-            // ->oiWhere();
+            // ->orWhere();
             // カテゴリーワードの検索
         } else if ($request->category_word)
-        //一覧のサブカテゴリーが選択されたとき
+        //サブカテゴリーワードが選択された時、選択したサブカテゴリーの投稿のみを表示させるようにしたい。
         {
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            //dd($request);
+            $posts = Post::with('user', 'postComments')
+            // ->orWhere();で検索条件追加→なんかできない。→orWhereHasをつかうらしい。進捗メモに調べたリンク張ったからよく見る。
+            // サブカテゴリー一覧から、サブカテゴリー一つの物を抽出する。
+            // $queryは変数ではなく引数。引数は呼び出し用のもの。→何を呼び出す？サブカテゴリーの中から、$sub_categoryが含まれたレコードをを呼び出す。
+                ->orWhereHas('subCategories', function ($query) use ($sub_category) {
+                    $query->where('sub_category', $sub_category);
+                })
+                ->get();
+
             // いいねした投稿が選択されたとき
         } else if ($request->like_posts) {
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
                 ->whereIn('id', $likes)->get();
-                // 自分の投稿が選択されたとき
+            // 自分の投稿が選択されたとき
         } else if ($request->my_posts) {
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
