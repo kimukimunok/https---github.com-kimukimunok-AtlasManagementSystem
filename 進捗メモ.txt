@@ -129,6 +129,7 @@ https://qiita.com/kakudaisuke/items/39d4e2b75f0416c5e70a
 →つまり、投稿した時に「post_sub_categories」に投稿IDとそれに伴うサブカテゴリーIDが登録されていることを確認できればいいってことかね。
 うーんどこが対応したところなんだろうか、ポストとサブカテゴリーのリレーション部分かな
 PostsContoller内に新規投稿時サブカテゴリーを追加するところあった。
+あ
 
 
 
