@@ -9,9 +9,8 @@
             @if($errors->first('post_category_id'))
             <span class="error_message">{{ $errors->first('post_category_id') }}</span>
             @endif
-            <!-- サブカテゴリーを選択できるようにする。 -->
+            <!-- サブカテゴリーを選択できるようにする。（select） -->
             <p class="mb-0">カテゴリー</p>
-            <!-- selectは選択できるようにしている。 -->
             <select class="w-100" form="postCreate" name="post_category_id">
                 @foreach($main_categories as $main_category)
                 <!-- optgroupとは選択肢グループ要素→選択肢の中で大枠選択肢として表示させる。＝メインカテゴリーが大枠でサブカテゴリーが中枠みたいな -->
@@ -82,7 +81,6 @@
                 </select>
 
                 <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
-
                 <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm" id="subCategoryInput">
                 <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
             </div>

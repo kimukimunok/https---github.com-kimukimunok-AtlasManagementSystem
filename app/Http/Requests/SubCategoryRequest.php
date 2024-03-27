@@ -26,9 +26,7 @@ class SubCategoryRequest extends FormRequest
         $mainCategoryId = $this->input('main_category_id');
         return [
             'sub_category_name' =>
-            'required|
-                |string|
-                |max:100'
+            'required|string|max:100|unique:sub_categories,sub_category'
         ];
     }
     // |exists:sub_categories,sub_category

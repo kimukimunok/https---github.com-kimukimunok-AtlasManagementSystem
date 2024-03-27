@@ -38,13 +38,38 @@
             </div>
             <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
             <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-            <ul>
-                @foreach($categories as $category)
-                <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-                @endforeach
-            </ul>
+            <!-- この辺からカテゴリー選択 -->
+            <!-- アコーディオンメニューが必要
+            divカテゴリー検索,メイン検索,アコーディオンメニュー表示, -->
+            <div class="accordion_container">
+                <ul class="menu_items">
+                    <p class="category_items">カテゴリー検索</p>
+
+                    @foreach($categories as $category)
+                    <div class="category-container">
+                        <!-- data-ooで対象となるクラスやIDを入れられる各カテゴリーIDを持ってくる -->
+                        <div class="accordion-push-js" data-target="{{ $category->id }}">
+
+                            <div class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span></div>
+                            <div class="accordion-push" data-target="{{ $category->id }}"></div>
+
+                        </div>
+                        <!-- divサブカテゴリーとサブカテゴリー選択のJS -->
+                        <!-- ※ul liは子要素としての扱い、ulは外側を囲う要素、liは箇条書き要素一つ一つ。 -->
+                        <ul class="sub_categories" data-category="{{ $category->id }}">
+                            @foreach($category->subCategories as $sub_category)
+                            <li class="sub_category" sub_category_id="{{ $sub_category->id }}">
+                                <input type="submit" name="category_word" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+                            </li>
+                            <!-- 3.23エラー出なくなったため多分正しい。JSとCSS探る -->
+                            <!-- 3.26JS記述、とりあえずモーダルオープンはできた次はCSS、レイアウトみたいにする。？（ちなみにサブカテゴリー選択してもサブカテゴリーの投稿だけが表示されない状態だからそこもみたいよね。）→できた -->
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endforeach
+                </ul>
+            </div>
+            <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </div>
-    </div>
-    <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
-</div>
-@endsection
+        @endsection
