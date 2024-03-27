@@ -41,14 +41,14 @@ class PostsController extends Controller
             // ->orWhere();
             // カテゴリーワードの検索
         } else if ($request->category_word)
-        //サブカテゴリーワードが選択された時、選択したサブカテゴリーの投稿のみを表示させるようにしたい。
+        //以下サブカテゴリーワードが選択された時、選択したサブカテゴリーの投稿のみを表示させるようにしたい。
         {
             $sub_category = $request->category_word;
             //dd($request);
             $posts = Post::with('user', 'postComments')
-            // ->orWhere();で検索条件追加→なんかできない。→orWhereHasをつかうらしい。進捗メモに調べたリンク張ったからよく見る。
-            // サブカテゴリー一覧から、サブカテゴリー一つの物を抽出する。
-            // $queryは変数ではなく引数。引数は呼び出し用のもの。→何を呼び出す？サブカテゴリーの中から、$sub_categoryが含まれたレコードをを呼び出す。
+                // ->orWhere();で検索条件追加→なんかできない。→orWhereHasをつかうらしい。進捗メモに調べたリンク張ったからよく見る。
+                // サブカテゴリー一覧から、サブカテゴリー一つの物を抽出する。
+                // $queryは変数ではなく引数。引数は呼び出し用のもの。→何を呼び出す？サブカテゴリーの中から、$sub_categoryが含まれたレコードをを呼び出す。
                 ->orWhereHas('subCategories', function ($query) use ($sub_category) {
                     $query->where('sub_category', $sub_category);
                 })
@@ -88,10 +88,10 @@ class PostsController extends Controller
             'post' => $request->post_body
         ]);
         // 投稿にサブカテゴリーを加えたい。
-        // userとpostの間にsubcategoryを入れたい→中間テーブルに挿入（attach）を使用。
+        // userテーブルとpostテーブルの間にsubcategoryを入れたい→中間テーブルに挿入（attach）を使用。
         // 投稿の中にpost_category_id(name属性)のサブカテゴリーを入れている。
         $post->subcategories()->attach($request->post_category_id);
-
+        dd($post);
         return redirect()->route('post.show');
     }
 

@@ -62,7 +62,7 @@
                                 <input type="submit" name="category_word" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
                             </li>
                             <!-- 3.23エラー出なくなったため多分正しい。JSとCSS探る -->
-                            <!-- 3.26JS記述、とりあえずモーダルオープンはできた次はCSS、レイアウトみたいにする。？（ちなみにサブカテゴリー選択してもサブカテゴリーの投稿だけが表示されない状態だからそこもみたいよね。） -->
+                            <!-- 3.26JS記述、とりあえずモーダルオープンはできた次はCSS、レイアウトみたいにする。？（ちなみにサブカテゴリー選択してもサブカテゴリーの投稿だけが表示されない状態だからそこもみたいよね。）→できた -->
                             @endforeach
                         </ul>
                     </div>
