@@ -17,6 +17,11 @@
                     <div>
                     </div>
                     <div>
+                        <!-- ここにサブカテゴリーの名称を表示させる記述をする。 -->
+                        <!-- foreachにてsub_categoryを取得する。 -->
+                        @foreach($post->subCategories as $sub_category)
+                        <span class="posts_sub_category">{{ $sub_category->sub_category }}</span>
+                        @endforeach
                         <!-- 投稿編集 -->
                         <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
                         <!-- 投稿削除-確認OK -->

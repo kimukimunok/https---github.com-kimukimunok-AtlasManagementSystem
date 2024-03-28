@@ -33,10 +33,19 @@ class PostsController extends Controller
         $post_comment = new Post;
         // 検索箇所
         // 検索ワードが入力されていた時
+        // $request=Bladeにリクエストする値。(文字でも数値でも)
         if (!empty($request->keyword)) {
+            // 入力された値を$keywordとして登録。
+            $keyword = $request->keyword;
             $posts = Post::with('user', 'postComments')
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
-                ->orWhere('post', 'like', '%' . $request->keyword . '%')->get();
+                ->orWhere('post', 'like', '%' . $request->keyword . '%')
+                // ■検索欄に入力したキーワードがサブカテゴリーと完全一致したら対象のサブカテゴリーに属している投稿のみ表示
+                ->orWhereHas('subCategories', function ($query) use ($keyword) {
+                    $query->where('sub_category', $keyword);
+                })
+                ->get();
+
             // サブカテゴリーを検索できるようにする。orWhereで条件追加！！！！！
             // ->orWhere();
             // カテゴリーワードの検索
@@ -91,7 +100,6 @@ class PostsController extends Controller
         // userテーブルとpostテーブルの間にsubcategoryを入れたい→中間テーブルに挿入（attach）を使用。
         // 投稿の中にpost_category_id(name属性)のサブカテゴリーを入れている。
         $post->subcategories()->attach($request->post_category_id);
-        dd($post);
         return redirect()->route('post.show');
     }
 

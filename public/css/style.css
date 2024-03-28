@@ -153,6 +153,16 @@ li{
 .edit-modal-btn{
   justify-content: space-between;
 }
+
+/* 試しにCSS記述 */
+.posts_sub_category{
+    margin:10px auto;
+    font-size:14px;
+    padding:0 5px;
+    color: #FFF;
+    background-color:#03AAD2;
+    border-radius: 5px;
+}
 /* 掲示板 コメント */
 .comment_container{
   background:#FFF;
