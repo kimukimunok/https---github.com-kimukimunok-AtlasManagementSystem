@@ -31,7 +31,7 @@ class PostsController extends Controller
         $like = new Like;
         // post_comment=投稿へのコメント
         $post_comment = new Post;
-        // 検索箇所
+        // 検索箇所＾
         // 検索ワードが入力されていた時
         // $request=Bladeにリクエストする値。(文字でも数値でも)
         if (!empty($request->keyword)) {
