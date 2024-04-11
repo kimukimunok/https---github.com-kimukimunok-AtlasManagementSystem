@@ -40,7 +40,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('post', 'like', '%' . $request->keyword . '%')
-                // ■検索欄に入力したキーワードがサブカテゴリーと完全一致したら対象のサブカテゴリーに属している投稿のみ表示
+                // ■検索欄に入力したキーワードがサブカテゴリーとしたら対象のサブカテゴリーに属している投稿のみ表示
                 ->orWhereHas('subCategories', function ($query) use ($keyword) {
                     $query->where('sub_category', $keyword);
                 })

@@ -56,9 +56,11 @@
         </div>
         @endforeach
     </div>
+    <!-- ここユーザー検索 -->
     <div class="search_area w-25 border">
         <div class="">
             <div>
+                <p>検索</p>
                 <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
             </div>
             <div>
@@ -99,23 +101,27 @@
                         <label>選択科目</label>
                         <!-- 検索条件欄に選択科目の表示を追加 -->
                         <!-- 取得方法はforeachを使うため一覧画面と同じような記述になる？ -->
-                        <!-- @foreach($user->subjects as $subject)
-                        <span>{{ $subject->subject }}</span></span>
-                        @endforeach これ記述したらログインユーザーの選択科目表示された。違うな。-->
                         <!-- 選択科目全部を表示させて、 チェックボックスで選択できるようにする。-->
                         @foreach($AllSubjects as $subject)
                         <label>{{ $subject->subject }}
-                            <input type="checkbox" value="{{ $subject->id }}" form="userSearchRequest">
+                            <input type="checkbox" name="subject_id[]" value=" {{ $subject->id }}" form="userSearchRequest">
+                            <!-- データを送るにはname属性に注意が必要。適切に設定しないと連想配列としてデータを送れない。 -->
+                            <!-- 今回のミス、name属性を暮らすか何かと勘違いして、記述しないでいた。→間違い。
+                        name属性はフィールドの名前を指定するものとなるためこれが記入されていないとそもそもデータを受け渡しできない。
+                    なので、ここでは選択科目識別のIDのsubject_idがフィールド名なので記述される。-->
+                            <!-- name属性の後につく[]とは？ これを見ろ→https://zoomyc.com/blog/archives/2656/
+                        複数選択が可能になるときはname属性のあとに[]をつける！！今回は選択科目は複数選択可能のため[]をつけなければならなかった。-->
+                            <!--  -->
                         </label>
                         @endforeach
                     </div>
                 </div>
             </div>
             <div>
-                <input type="reset" value="リセット" form="userSearchRequest">
+                <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
             </div>
             <div>
-                <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+                <input type="reset" value="リセット" form="userSearchRequest">
             </div>
         </div>
         <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>

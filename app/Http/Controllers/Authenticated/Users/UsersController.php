@@ -26,7 +26,8 @@ class UsersController extends Controller
         $subjects = $request->subject_id; // ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
-         $AllSubjects = Subjects::all();
+        // 選択科目のユーザ一覧への表示
+        $AllSubjects = Subjects::all();
         return view('authenticated.users.search', compact('users', 'AllSubjects'));
     }
 
