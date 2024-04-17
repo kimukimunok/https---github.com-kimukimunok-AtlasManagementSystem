@@ -14,7 +14,7 @@ class ReserveSettings extends Model
         'setting_part',
         'limit_users',
     ];
-
+// 多対多のリレーション
     public function users(){
         return $this->belongsToMany('App\Models\Users\User', 'reserve_setting_users', 'reserve_setting_id', 'user_id')->withPivot('reserve_setting_id', 'id');
     }

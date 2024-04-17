@@ -13,26 +13,33 @@ use DB;
 
 class CalendarsController extends Controller
 {
-    public function show(){
+    public function show()
+    {
+        // CalendarView(time())は現在時刻を取得して、当月のカレンダーを表示させる。
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }
-
-    public function reserve(Request $request){
+    // 予約
+    public function reserve(Request $request)
+    {
+        //トランザクション開始？＝複数の処理を一つにまとめてデータベースに反映させること
         DB::beginTransaction();
-        try{
+        try {
+            // getPart=枠getdate=日時を$request変数一つにしている。array_combineで
             $getPart = $request->getPart;
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
-            foreach($reserveDays as $key => $value){
+            // 予約する(データベースに登録)
+            foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 $reserve_settings->decrement('limit_users');
                 $reserve_settings->users()->attach(Auth::id());
             }
             DB::commit();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
+    // キャンセル処理多分ここに記述。
 }
