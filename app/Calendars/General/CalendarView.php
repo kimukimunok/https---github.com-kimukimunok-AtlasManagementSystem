@@ -44,9 +44,10 @@ class CalendarView
             foreach ($days as $day) {
                 $startDay = $this->carbon->copy()->format("Y-m-01");
                 $toDay = $this->carbon->copy()->format("Y-m-d");
-
+                // もし過去日なら～
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
-                    $html[] = '<td class="calendar-td">';
+                    // CSS記述にクラスのpast-dayがありそれを指定して、過去日の背景色をグレーに
+                    $html[] = '<td class="calendar-td past-day">';
                 } else {
                     $html[] = '<td class="calendar-td ' . $day->getClassName() . '">';
                 }
@@ -65,13 +66,21 @@ class CalendarView
                     if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                         $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                        // 今日より後の日程
                     } else {
                         $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     }
-                    // 今日より後の日程
+                    // 予約をしていない日の表示↓
                 } else {
-                    $html[] = $day->selectPart($day->everyDay());
+                    //今より前の日を指定する記述
+                    if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
+                        //今より前の日付に受付終了を表示させる。
+                        $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                        $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                    } else {
+                        $html[] = $day->selectPart($day->everyDay());
+                    }
                 }
                 $html[] = $day->getDate();
                 $html[] = '</td>';

@@ -43,6 +43,7 @@ li{
 .day-sun{
   color:#FF0000;
 }
+/* スクール予約の過去日のクラスこれかよー */
 .past-day{
   background:#EEE;
 }
@@ -242,4 +243,8 @@ li{
 }
 .subject_inner{
   display:none;
+}
+/* スクール予約一覧 */
+.entry_end_text{
+    background-color: #494949;
 }
