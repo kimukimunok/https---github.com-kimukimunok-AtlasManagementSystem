@@ -19,7 +19,7 @@ class CalendarsController extends Controller
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }
-    // 予約
+    // 予約機能
     public function reserve(Request $request)
     {
         //トランザクション開始？＝複数の処理を一つにまとめてデータベースに反映させること
@@ -33,6 +33,7 @@ class CalendarsController extends Controller
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 $reserve_settings->decrement('limit_users');
+                // useridをテーブルに追加している。
                 $reserve_settings->users()->attach(Auth::id());
             }
             DB::commit();

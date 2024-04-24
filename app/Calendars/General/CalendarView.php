@@ -52,9 +52,11 @@ class CalendarView
                     $html[] = '<td class="calendar-td ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
-                // 予約機能
+                // 予約機能（選択されたものをコントローラー側に送っている。）
                 if (in_array($day->everyDay(), $day->authReserveDay())) {
                     $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
+
+
                     if ($reservePart == 1) {
                         $reservePart = "リモ1部";
                     } else if ($reservePart == 2) {
@@ -78,6 +80,7 @@ class CalendarView
                         //今より前の日付に受付終了を表示させる。
                         $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                        // 先の予定の記述
                     } else {
                         $html[] = $day->selectPart($day->everyDay());
                     }

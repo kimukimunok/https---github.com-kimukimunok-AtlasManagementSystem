@@ -29,10 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/logout', 'TopsController@logout');
             Route::get('/top', 'TopsController@show')->name('top.show');
         });
+        // スクール予約の部分
         Route::namespace('Calendar')->group(function () {
             Route::namespace('General')->group(function () {
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
+                // 予約する
                 Route::post('/reserve/calendar', 'CalendarsController@reserve')->name('reserveParts');
+                // 予約キャンセル
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
             });
             Route::namespace('Admin')->group(function () {
