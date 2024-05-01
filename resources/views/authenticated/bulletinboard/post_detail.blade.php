@@ -81,7 +81,7 @@
         </div>
     </div>
 </div>
-<!-- 投稿編集モーダル -->
+<!-- キャンセルモーダル -->
 <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
@@ -93,6 +93,7 @@
                 <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
                     <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
                 </div>
+                <!-- モーダル閉じるボタン -->
                 <div class="w-50 m-auto edit-modal-btn d-flex">
                     <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
                     <input type="hidden" class="edit-modal-hidden" name="post_id" value="">

@@ -69,8 +69,14 @@ class CalendarView
                         $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                         // 今日より後の日程
+                        // ここでキャンセルボタンを表示する記述を書き、(予約されていればキャンセルボタンを表示させるようにして押したらキャンセル時のモーダル'(java)が出るようにする。)
                     } else {
-                        $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+                        // クラスにキャンセルモーダル(cancel_modal)を追加→javaで
+                        $html[] = '<button type="submit" class= cancel_modal "btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' .
+
+                            // ↓ここは変更しないと思う
+                            $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+                        // 表示に関しては以下
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     }
                     // 予約をしていない日の表示↓

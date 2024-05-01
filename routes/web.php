@@ -38,8 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
                 // 予約キャンセル
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
             });
+            // スクール予約確認のルーティング
             Route::namespace('Admin')->group(function () {
                 Route::get('/calendar/{user_id}/admin', 'CalendarsController@show')->name('calendar.admin.show');
+                // これが予約確認の部の詳細画面へのルーティング
                 Route::get('/calendar/{date}/{part}', 'CalendarsController@reserveDetail')->name('calendar.admin.detail');
                 Route::get('/setting/{user_id}/admin', 'CalendarsController@reserveSettings')->name('calendar.admin.setting');
                 Route::post('/setting/update/admin', 'CalendarsController@updateSettings')->name('calendar.admin.update');
