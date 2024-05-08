@@ -81,7 +81,7 @@ class CalendarWeekDay{
    function authReserveDay(){
      return Auth::user()->reserveSettings->pluck('setting_reserve')->toArray();
    }
-
+// 多対多のリレーションをしてる。（ファイル同士がデータの送りあいができるように処理している。）
    function authReserveDate($reserveDate){
      return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);
    }

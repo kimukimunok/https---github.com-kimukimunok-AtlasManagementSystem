@@ -32,6 +32,7 @@ class CalendarsController extends Controller
             // 予約する(データベースに登録)
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
+                // limit_usersは予約人数のこと（デフォルトで20が選択されている。）decrementで減っている。反対(追加)はincrementとなる
                 $reserve_settings->decrement('limit_users');
                 // useridをテーブルに追加している。
                 $reserve_settings->users()->attach(Auth::id());
@@ -43,4 +44,55 @@ class CalendarsController extends Controller
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
     // キャンセル処理多分ここに記述。
+    public function delete(request $request)
+    {
+        // // キャンセルとは、予約した部数をキャンセルして、予約できる部数をもとにもどすことを行う。
+        // // １．キャンセル処理
+        // // 予約した部数を取得
+        // // 変数で予約日と予約した部の情報を取得して削除する。そのあと増やす記述を行う。
+        // // 予約日と予約部のデータをまとめるから、トランザクション処理を行って変数定義をする。
+        // DB::beginTransaction();
+        // $getPart = $request->getPart;
+        // $getDate = $request->getData;
+        // $reserveDays = array_filter(array_combine($getDate, $getPart));
+        // // 削除する。
+        // $reserveDays->delete();
+        // // 予約した部数を増やさなければならない。
+        // // limit_usersが上限の数値のため、インクリメントincrementで増やす。いくつ増やすかわかってる場合は数値を記述すれば可能。記入しない場合はデフォルトで１。
+        //  $reserve_settings->increment('limit_users');
+        //         // useridをテーブルにから削除している。
+        //         $reserve_settings->users()->detach(Auth::id());
+        //     }
+        //     DB::commit();
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        // }
+        // return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+        DB::beginTransaction();
+        try {
+            $getPart = $request->getPart;
+            $getDate = $request->getData;
+            $reserveDays = array_filter(array_combine($getDate, $getPart));
+            // 予約情報の削除をする
+            // ここの記載ってそもそも何やってるの→「https://www.javadrive.jp/php/for/index9.html」
+            // foreach　でキーを取り出す構文＝reserveDaysの値を繰り返し処理で表示している。
+            // なんで繰り返し処理だったのか、→予約の際はいくつかの日程の予約が可能だったため。反対にキャンセルの場合は繰り返し処理ではなく一度に一回分のキャンセルしかできないため、foreachは使わない。
+            // foreach ($reserveDays as $key => $value) {
+            //     $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
+            // 繰り返し処理を消して、取得するものを予約した日と予約した部にしたつもり
+            // dd($getDate);
+
+            $reserve_settings = ReserveSettings::where('setting_reserve', $getPart)->where('setting_part', $getDate)->first();
+            // dd($reserve_settings);
+
+            // 予約枠を１回分戻す記述
+            $reserve_settings->increment('limit_users');
+            // usersテーブルから削除している
+            $reserve_settings->users()->detach(Auth::id());
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
 }

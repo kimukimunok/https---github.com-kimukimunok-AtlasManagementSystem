@@ -53,6 +53,7 @@ class CalendarView
                 }
                 $html[] = $day->render();
                 // 予約機能（選択されたものをコントローラー側に送る。）
+                // 予約された日の部数を取得している。
                 if (in_array($day->everyDay(), $day->authReserveDay())) {
                     $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
 
@@ -72,11 +73,18 @@ class CalendarView
                         // 今日より後の日程
                         // ここでキャンセルボタンを表示する記述を書き、(予約されていればキャンセルボタンを表示させるようにして押したらキャンセル時のモーダル'(java)が出るようにする。)
                     } else {
-                        // クラスにキャンセルモーダル(cancel_modal)を追加→javaで
-                        $html[] = '<button type="submit" class= cancel_modal "btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' .
+                        // クラスにキャンセルモーダル(modal-cancel)を追加→javaで
+                        // モーダル内にも予約日と予約時間を表示させるため、予約日と予約時間の情報をモーダルに送るようにする。
+                        // 上の送るようにする。というのは、改修課題遷移図を見ると、予約日と予約された部数が表示されているため、やることとすれば、予約した日と部数が取得して、それを表示できればいいということになる。
+                        // てことは、モーダル上での表示になるからこっちは記述いらないはず。→まずは予約日のボタンを押したら、キャンセルモーダルを開くところを目指す。
 
-                            // ↓ここは変更しないと思う
+                        // 予約日=$reserveDay 予約時間=$reservePart
+                        $html[] = '<button type="submit" class=" modal-cancel btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px"
+                        value="' .
+
+                            // $days = $week->getDays→$dayは日一つ一つを表す。予約された部を取得している？
                             $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+
                         // 表示に関しては以下
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                     }
