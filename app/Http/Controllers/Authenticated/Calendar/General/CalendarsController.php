@@ -27,7 +27,9 @@ class CalendarsController extends Controller
         try {
             // getPart=枠getdate=日時を$request変数一つにしている。array_combineで
             $getPart = $request->getPart;
+            // dd($getPart);
             $getDate = $request->getData;
+            // dd($getDate);
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             // 予約する(データベースに登録)
             foreach ($reserveDays as $key => $value) {
@@ -44,14 +46,26 @@ class CalendarsController extends Controller
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
     // キャンセル処理多分ここに記述。
+    // デリートメソッド何を行うか、キャンセル→予約した日と部から予約を削除→日と部の数を戻す。
+    // まず枠と部を取得、DBテーブルに枠と部の数を追加する。
     public function delete(request $request)
     {
-
+        //トランザクション開始
         DB::beginTransaction();
         try {
-            $getPart = $request->getPart;
-            $getDate = $request->getData;
-            $reserveDays = array_filter(array_combine($getDate, $getPart));
+            // 変数を指定
+            // 予約日=$reserveDays 予約時間=$reserveParts
+            // キャンセルする予約情報を取得、(calendar.viewの予約部分から取得する)開校日（setting_reserve）部(setting_part)
+            // 部
+            $deletePart = $request->setting_part;
+            // 日
+            // dd($deletePart);
+            $deleteDate = $request->setting_reserve;
+            dd($deleteDate);
+            // 5/9null
+            // 現状処理を行おうとすると、数がNULLのため増やせないというエラーが出る。→つまり変数指定があってない。
+
+            $reserveDays = array_filter(array_combine($deletePart, $deleteDate));
             // 予約情報の削除をする
             // ここの記載ってそもそも何やってるの→「https://www.javadrive.jp/php/for/index9.html」
             // foreach　でキーを取り出す構文＝reserveDaysの値を繰り返し処理で表示している。
@@ -63,7 +77,7 @@ class CalendarsController extends Controller
             // $getPartと$getDate
             // dd($getDate);
 
-            $reserve_settings = ReserveSettings::where('setting_reserve', $getPart)->where('setting_part', $getDate)->first();
+            $reserve_settings = ReserveSettings::where('setting_reserve', $deletePart)->where('setting_part', $deleteDate)->first();
             // dd($reserve_settings);
 
             // 予約を１回分戻す記述(incrementで戻すことが可能)

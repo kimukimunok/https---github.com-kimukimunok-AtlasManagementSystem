@@ -56,7 +56,9 @@ class CalendarView
                 // 予約時間（setting_part）を取得している。
                 if (in_array($day->everyDay(), $day->authReserveDay())) {
                     $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
+                    // 予約日(setting_reserve)を取得
 
+                    // $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_reserve;
 
                     if ($reservePart == 1) {
                         $reservePart = "リモ1部";
@@ -80,6 +82,7 @@ class CalendarView
 
                         // 予約日=$setting_reserve 予約時間=$reservePart
                         $html[] = '<button type="submit" class=" modal-cancel btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px"
+
                         value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '" reservePart= "' . $reservePart . '">
                         ' . $reservePart . '</button>';
 
