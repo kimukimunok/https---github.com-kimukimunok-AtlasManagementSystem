@@ -33,14 +33,14 @@
             <div class="modal_reserve">
                 <p>予約日：<input type="text" style="border:none" id="reserveDays" name="reserveDays" value="" readonly form="deleteParts"></p>
                 <!-- 予約時間 -->
-                
+
                 <p>予約：<input type="text" style="border:none" id="reserveParts" name="reserveParts" value="" readonly form="deleteParts"></p>
                 <!-- 文章 -->
                 <!-- <input type="hidden" value="1" name="test"> -->
                 <p>上記の予約をキャンセルしてもよろしいですか？</p>
             </div>
-            <!-- 閉じるボタン -->
-
+            <!-- 閉じるボタン→ok -->
+            <button type="button" class="js-modal-close btn btn-danger">閉じる</button>
             <!-- キャンセルボタンも必要 -->
             <input type="submit" class="btn btn-primary d-block" value="キャンセル" form="deleteParts">
             {{csrf_field()}}
