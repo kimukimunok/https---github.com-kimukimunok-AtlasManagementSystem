@@ -33,6 +33,7 @@ class CalendarsController extends Controller
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             // 予約する(データベースに登録)
             foreach ($reserveDays as $key => $value) {
+
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 // limit_usersは予約人数のこと（デフォルトで20が選択されている。）decrementで減っている。反対(追加)はincrementとなる
                 $reserve_settings->decrement('limit_users');
@@ -48,24 +49,28 @@ class CalendarsController extends Controller
     // キャンセル処理多分ここに記述。
     // デリートメソッド何を行うか、キャンセル→予約した日と部から予約を削除→日と部の数を戻す。
     // まず枠と部を取得、DBテーブルに枠と部の数を追加する。
-    public function delete(request $request)
+    public function delete(Request $request)
     {
         //トランザクション開始
         DB::beginTransaction();
         try {
             // 変数を指定
-            // 予約日=$reserveDays 予約時間=$reserveParts
+            // 予約日=$reserveDays 予約時間=$reserveParts（違う）
             // キャンセルする予約情報を取得、(calendar.viewの予約部分から取得する)開校日（setting_reserve）部(setting_part)
             // 部
-            $deletePart = $request->setting_part;
-            // 日
+            $deletePart = $request->reserveParts;
+            // 上記のままだと「リモ1部」のように表示するため、if文で数字になるように変更する。5/10できた。
+            if ($deletePart == "リモ1部") {
+                $deletePart = 1;
+            } else if ($deletePart == "リモ2部") {
+                $deletePart = 2;
+            } else if ($deletePart == "リモ3部") {
+                $deletePart = 3;
+            }
             // dd($deletePart);
-            $deleteDate = $request->setting_reserve;
-            dd($deleteDate);
-            // 5/9null
-            // 現状処理を行おうとすると、数がNULLのため増やせないというエラーが出る。→つまり変数指定があってない。
+            $deleteDate = $request->reserveDays;
+            // dd($deleteDate);
 
-            $reserveDays = array_filter(array_combine($deletePart, $deleteDate));
             // 予約情報の削除をする
             // ここの記載ってそもそも何やってるの→「https://www.javadrive.jp/php/for/index9.html」
             // foreach　でキーを取り出す構文＝reserveDaysの値を繰り返し処理で表示している。
@@ -77,8 +82,7 @@ class CalendarsController extends Controller
             // $getPartと$getDate
             // dd($getDate);
 
-            $reserve_settings = ReserveSettings::where('setting_reserve', $deletePart)->where('setting_part', $deleteDate)->first();
-            // dd($reserve_settings);
+            $reserve_settings = ReserveSettings::where('setting_part', $deletePart)->where('setting_reserve', $deleteDate)->first();
 
             // 予約を１回分戻す記述(incrementで戻すことが可能)
             $reserve_settings->increment('limit_users');
@@ -89,5 +93,6 @@ class CalendarsController extends Controller
             DB::rollback();
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+        // キャンセルできたっぽい！！！！！！！！！
     }
 }

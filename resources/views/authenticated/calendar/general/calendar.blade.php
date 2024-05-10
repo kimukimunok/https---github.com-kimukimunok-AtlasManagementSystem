@@ -21,7 +21,7 @@
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
         <!-- web.php記載のルーティング -->
-        <form action="{{ route('deleteParts') }}" method="post">
+        <form action="{{ route('deleteParts') }}" method="post" id="deleteParts">
             <!-- モーダルの中身ここから -->
 
             <!-- 日時と予約した部数の表示もここで行う。 -->
@@ -32,16 +32,17 @@
             <!-- divクラスでJS内で作ったクラスmodal_reserveを指定 -->
             <div class="modal_reserve">
                 <p>予約日：<input type="text" style="border:none" id="reserveDays" name="reserveDays" value="" readonly form="deleteParts"></p>
-
                 <!-- 予約時間 -->
+                
                 <p>予約：<input type="text" style="border:none" id="reserveParts" name="reserveParts" value="" readonly form="deleteParts"></p>
                 <!-- 文章 -->
+                <!-- <input type="hidden" value="1" name="test"> -->
                 <p>上記の予約をキャンセルしてもよろしいですか？</p>
             </div>
             <!-- 閉じるボタン -->
 
             <!-- キャンセルボタンも必要 -->
-            <input type="submit" class="btn btn-primary d-block" value="キャンセル">
+            <input type="submit" class="btn btn-primary d-block" value="キャンセル" form="deleteParts">
             {{csrf_field()}}
         </form>
     </div>
