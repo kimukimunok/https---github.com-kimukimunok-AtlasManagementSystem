@@ -29,7 +29,7 @@ class CalendarWeekDay
     {
         return $this->carbon->format("Y-m-d");
     }
-
+// 予約詳細ページの部数確認箇所
     function dayPartCounts($ymd)
     {
         $html = [];
@@ -41,7 +41,9 @@ class CalendarWeekDay
         // 部数の詳細へ飛ぶようにするためにはhrefで部数のリンクを作る
         // ルーティングリンクの記述とcalendar.admin.detail
         // 各部に予約された数の表示を取得して表示する。(下の$one_partに予約した数がわかる変数$usersの情報を取得する。)
+        // 1部2部3部とそれぞれに$htmlが存在するため、それぞれに変数を当て、予約されている部数を表示させる記述をおこなう。ちなみに、上の方で変数にどの部が対応しているかの記述が存在するため、（1部ならその日の部のID１のような。）下でcount(～)で記述した際に何部から取得するかわかる。
         // この際"とか'とか.の必要な位置に注意したい。
+        // count($one_part->users) で、予約された部数の表示を行っている。
         $html[] = '<div class="text-left">';
         if ($one_part) {
             $html[] = '<p class="day_part m-0 pt-1">
@@ -68,7 +70,8 @@ class CalendarWeekDay
       </p>';
         }
         $html[] = '</div>';
-
+// implodeメソッド→データを結合した文字列を取得する
+// $htmlで指定した文字列、「各部の表示」を表示している。
         return implode("", $html);
     }
 

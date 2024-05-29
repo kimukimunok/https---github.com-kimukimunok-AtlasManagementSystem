@@ -20,6 +20,7 @@ class CalendarsController extends Controller
         return view('authenticated.calendar.admin.calendar', compact('calendar'));
     }
 // 予約詳細
+// この予約の詳細（ユーザーと予約日と予約部）が入ってるのは$reservePersonsだから、この変数を予約詳細画面の変数に入力する。
     public function reserveDetail($date, $part){
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
