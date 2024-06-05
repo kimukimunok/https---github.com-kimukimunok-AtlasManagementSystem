@@ -247,6 +247,9 @@ https://www.tagindex.com/html/form/button.html
 あとはレイアウトの調整。
 調整して全体を見直しながら、復習も兼ねたい。
 
+1ログイン画面
+大体終わった
+新規登録画面の生年月日の部分を今触っている。
 
 atlasno13@gmail.com
 atlas0000
