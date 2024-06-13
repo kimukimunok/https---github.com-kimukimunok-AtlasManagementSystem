@@ -51,7 +51,7 @@ display: flex;
      text-align: center;
 }
 .sex-select{
-margin-left: 50px;
+     margin:0 auto;
 }
 /* 生年月日 */
 .birth{
@@ -59,14 +59,24 @@ margin-left: 50px;
    flex-wrap: wrap;
      text-align: center;
 }
-
+/* 生年月日の資格の枠の部分 */
 .birth select {
   border: none;
 }
-.birth-day{
-     border-bottom: #007bff solid 1px;
+.birth-select{
+     margin:0 auto;
+    border-bottom: #007bff solid 1px;
 }
 
+/* 役職 */
+.birth{
+    display: flex;
+   flex-wrap: wrap;
+     text-align: center;
+}
+.sub-select{
+    margin:0 auto;
+}
 /* サイドバー */
 .sidebar{
   width:150px;

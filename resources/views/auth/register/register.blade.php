@@ -16,7 +16,7 @@
 
 <body>
     <form action="{{ route('registerPost') }}" method="POST">
-        <div class="login-background w-100 d-flex" style="align-items:center; justify-content:center;">
+        <div class="login-background w-100 vh-100 d-flex flex-column" style="align-items:center; justify-content:center;">
             <div class="register-area vh-75 border">
                 <div class="register_form">
                     <div class="d-flex mt-3" style="justify-content:space-between">
@@ -73,7 +73,7 @@
                             <li class="error-message" style="font-size:13px">{{$errors->first('mail_address')}}</li>
                             @endif
                         </ul>
-                        <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
+                        <label class="m-0 d-block" style="font-size:13px"><b>メールアドレス<b></label>
                         <div class="border-bottom border-primary">
                             <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
                         </div>
@@ -139,7 +139,7 @@
 
                             <label style="font-size:13px"><b>年</b></label>
                         </li>
-                        <li>
+                        <li class="birth-select">
                             <select class="old_month" name="old_month">
                                 <option value="none">-----</option>
                                 <option value="01">1</option>
@@ -157,7 +157,7 @@
                             </select>
                             <label style="font-size:13px"><b>月</b></label>
                         </li>
-                        <li>
+                        <li class="birth-select">
                             <select class="old_day" name="old_day">
                                 <option value="none">-----</option>
                                 <option value="01">1</option>
@@ -196,27 +196,35 @@
                         </li>
                     </span>
                 </div>
-                <div class="mt-3">
+                <!-- 役職 -->
+                <div class="mt-3 ">
                     <ul>
                         @if ($errors->has('role'))
                         <li class="error-message" style="font-size:13px">{{$errors->first('role')}}</li>
                         @endif
                     </ul>
-                    <label class="d-block m-0" style="font-size:13px"><b>役職</b></label>
-                    <input type="radio" name="role" class="admin_role role" value="1">
-                    <label style="font-size:13px"><b>教師(国語)</b></label>
-                    <input type="radio" name="role" class="admin_role role" value="2">
-                    <label style="font-size:13px"><b>教師(数学)</b></label>
-                    <input type="radio" name="role" class="admin_role role" value="3">
-                    <label style="font-size:13px"><b>教師(英語)</b></label>
-                    <input type="radio" name="role" class="other_role role" value="4">
-                    <label style="font-size:13px" class="other_role"><b>生徒</b></label>
+                    <li class=><label class="d-block m-0" style="font-size:13px"><b>役職</b></label></li>
+                    <ul class="birth">
+                        <li class="sub-select"><input type="radio" name="role" class="admin_role role" value="1">
+                            <label style="font-size:13px"><b>教師(国語)</b></label>
+                        </li>
+                        <li class="sub-select"><input type="radio" name="role" class="admin_role role" value="2">
+                            <label style="font-size:13px"><b>教師(数学)</b></label>
+                        </li>
+                        <li class="sub-select"> <input type="radio" name="role" class="admin_role role" value="3">
+                            <label style="font-size:13px"><b>教師(英語)</b></label>
+                        </li>
+                        <li class="sub-select"><input type="radio" name="role" class="other_role role" value="4">
+                            <label style="font-size:13px" class="other_role"><b>生徒</b></label>
+                        </li>
+                    </ul>
                 </div>
-                <div class="select_teacher d-none">
-                    <label class="d-block m-0" style="font-size:13px"><b>選択科目</b></label>
+                <div class="select_teacher d-none ">
+                    <label class="  d-block m-0" style="font-size:13px"><b>選択科目</b></label>
                     @foreach($subjects as $subject)
-                    <div class="d-flex align-items-center">
-                        <label class="mr-2">{{ $subject->subject }}</label>
+
+                    <div class=" d-flex align-items-center">
+                        <label class=" mr-2"><b>{{ $subject->subject }}</b></label>
                         <input type="checkbox" name="subject[]" value="{{ $subject->id }}">
                     </div>
                     @endforeach
