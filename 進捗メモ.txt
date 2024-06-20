@@ -263,5 +263,14 @@ https://www.tagindex.com/html/form/button.html
 
 次ユーザー検索画面
 
+残りCSS
+/* スクール予約枠画面 */
+/* スクール予約画面 */
+/* スクール予約確認 */
+/* スクール予約詳細確認画面 */
+
+
+https://design-library.jp/lab/icons-chevron-down
+CSS内で矢印アイコン出す方法
 atlasno13@gmail.com
 atlas0000
