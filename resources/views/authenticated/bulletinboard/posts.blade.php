@@ -3,26 +3,30 @@
 @section('content')
 <div class="board_area w-100 border m-auto d-flex">
     <div class="post_view w-75 mt-5">
-        <p class="w-75 m-auto">投稿一覧</p>
+        <p class="w-75 m-auto"></p>
+
         @foreach($posts as $post)
         <!-- 投稿者の名前 -->
-        <div class="post_area border w-75 m-auto p-3">
-            <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
-            <!-- 投稿の内容 -->
-            <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
-            <div class="post_bottom_area d-flex">
-                <div class="d-flex post_status">
-                    <div class="mr-5">
-                        <!-- まずここでコメントの数を表示させる。 -->
-                        <i class="fa fa-comment"></i><span class="">{{$post->postComments->count()}}</span>
-                    </div>
-                    <div>
-                        <!-- ここにいいねされた数を表示する記述をのせる。post->likes->count() とはデータを取得する記述 -->
-                        @if(Auth::user()->is_Like($post->id))
-                        <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{$post->likes->count()}}</span></p>
-                        @else
-                        <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
-                        @endif
+        <div class="post_area border w-75 m-auto">
+            <p class="Post_Name"><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
+            <p class="Post_Title"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+
+
+            <div class="sub_category_comment d-flex ">
+                <p class="sub_category_name"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+                <div class="post_bottom_area d-flex">
+                    <div class="d-flex post_status">
+                        <div class="mr-5">
+                            <!-- まずここでコメントの数を表示させる。 -->
+                            <i class="fa fa-comment"></i><span>{{$post->postComments->count()}}</span>
+                        </div>
+                        <div>
+                            @if(Auth::user()->is_Like($post->id))
+                            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{$post->likes->count()}}</span></p>
+                            @else
+                            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likes->count() }}</span></p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,13 +35,19 @@
     </div>
     <div class="other_area border w-25">
         <div class="border m-4">
-            <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-            <div class="">
-                <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-                <input type="submit" value="検索" form="postSearchRequest">
+            <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
+            <div class="keyword_search_btn">
+
+                <span class="search_container">
+                    <input class="text_box" type="text" placeholder="キーワードを入力" name="keyword" form="postSearchRequest">
+                    <input class="keyword-btn" type="submit" value="検索" form="postSearchRequest"></span>
             </div>
-            <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-            <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+            <!-- [いいねした投稿]と[自分の投稿]を横並びにして、それぞれにクラスをつけて色分けする。 -->
+            <div class="btn_flex">
+                <span class="post_like"><input type="submit" name="like_posts" class=" category_btn" value="いいねした投稿" form="postSearchRequest"></span>
+                <span class="my_post">
+                    <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest"></span>
+            </div>
             <!-- この辺からカテゴリー選択 -->
             <!-- アコーディオンメニューが必要
             divカテゴリー検索,メイン検索,アコーディオンメニュー表示, -->

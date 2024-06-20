@@ -257,5 +257,11 @@ https://www.tagindex.com/html/form/button.html
 現状年月日は一本の線でつながっているからそれぞれに適応しなければならない。あと配置もそうか
 生年月日完了
 役職完了
+
+掲示板
+アコーディオンメニューOK
+
+次ユーザー検索画面
+
 atlasno13@gmail.com
 atlas0000

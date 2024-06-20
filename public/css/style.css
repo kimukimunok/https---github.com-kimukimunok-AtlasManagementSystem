@@ -26,8 +26,8 @@ li{
     width: 400px;
 }
 .border {
-  border-radius: 7px;
-  padding: 15px;
+  border-radius: 2%;
+  padding: 10px;
 }
 .login-background{
     background-color: #EEEEEE;
@@ -41,9 +41,7 @@ li{
     width: 400px;
     padding: 30px;
 }
-.error-message{
-    color: #FF0000;
-}
+
 /* 性別 */
 .center {
 display: flex;
@@ -154,7 +152,6 @@ display: flex;
     transform: translate(-50%,-50%);
     width: 60%;
 }
-
 /* 掲示板 */
 .sub_categories{
   display:none;
@@ -172,6 +169,7 @@ display: flex;
   background:#FFF;
 }
 .post_area{
+    padding: 20px;
   background:#FFF;
   border-radius:10px;
 }
@@ -187,10 +185,13 @@ display: flex;
   color:#E2254D;
 }
 .error_message{
-  font-size:12px;
+  font-size:14px;
   color:red;
 }
-
+.error-message{
+    color: #FF0000;
+    font-size: 14px;
+}
 /* 掲示板 詳細画面 */
 .contributor{
   font-size:12px;
@@ -209,7 +210,27 @@ display: flex;
   justify-content: space-between;
 }
 .edit-modal-open{
-  cursor:pointer;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #007bff;
+  padding: 5px 7px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+.post-delete {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #FFF;
+  background-color: #dc3545;
+  padding: 4px 7px;
+  border: none;
+  border-radius: 5px;
+}
+.post-delete a:hover{
+  text-decoration: none;
+  color: #fff;
 }
 .modal-inner-body textarea{
   height:150px;
@@ -218,17 +239,41 @@ display: flex;
 .edit-modal-btn{
   justify-content: space-between;
 }
-
 /* 試しにCSS記述 */
 .posts_sub_category{
     margin:10px auto;
     font-size:14px;
-    padding:0 5px;
+    padding:5px 7px;
     color: #FFF;
     background-color:#03AAD2;
     border-radius: 5px;
 }
 /* 掲示板 コメント */
+/* 掲示板 */
+.Post_Name{
+      color: #9E9E9E;
+  font-weight: bold;
+}
+/* 投稿内 */
+.Post_Title a {
+  color: #000;
+  font-weight: bold;
+}
+.sub_category_comment{
+    justify-content:space-between
+}
+.sub_category_name a{
+    padding: 5px 7px 5px 7px;
+    background-color: #007bff;
+    color: #EEE;
+    border-radius: 7px;
+}
+.post_status{
+      color: #9E9E9E;
+  font-weight: bold;
+}
+/* 投稿内のコメントとハートマーク */
+
 .comment_container{
   background:#FFF;
 }
@@ -247,32 +292,127 @@ display: flex;
 .post_status span{
   font-size:12px;
 }
+/* ボタンの反応範囲を文字だけじゃなく範囲指定するときは、クラス名の後に"a"をつけるとできる。反応範囲にカーソルを乗せたときは色が変わるため、クラス名 a:hoverでカーソルに乗せた後のボタンを編集できる */
+.post_btn a{
+      display: inline-block;
+  color: #fff;
+  background: #03AAD2;
+  text-align: center;
+  padding: 5px 70px;
+  border-radius: 0.25rem;
+  width: 100%;
+  border: 1px solid #999;
+}
+.post_btn a:hover {
+  text-decoration: none;
+   border: 1px solid #999;
+  color: #fff;
+}
 
-/* 掲示板　カテゴリー カテゴリー選択はここいじる。*/
-.category_area{
-  background:#FFF;
-  border-radius:10px;
+/* キーワードを検索 */
+.keyword_search_btn{
+ display: inline-block;
+  border: 1px solid #999;
+  border-radius: 5px;
 }
-.category_box{
-  border-radius:5px;
-  padding:3px;
-  background:#999;
-  font-size:10px;
-  color:#FFF;
+.keyword-btn {
+  display: inline-block;
+  border-radius: 5%;
+    background: #03AAD2;
+    border:none;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px 11px;
 }
-.category_btn{
-  font-size:12px;
-  border-radius:5px;
-  padding:0 5px;
-  border:none;
-  background:#999;
-  color:#FFF;
+.text_box {
+
+  background-color: #ecf1f5;
+  color: #999;
+  border: none;
 }
-.main_categories span,
-.sub_categories li input{
-  list-style:none;
-  cursor:pointer;
+
+.text_box::placeholder {
+  font-size: 15px;
 }
+.btn_flex {
+  display: flex;
+  margin-top: 15px;
+}
+.post_like input,
+.my_post input{
+      display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  border: 1px solid transparent;
+   border-radius: 5px;
+  font-size: 15px;
+}
+.post_like input
+{
+padding: 10px;
+  background: #FF99FF;
+  width: 120px;
+
+}
+.my_post input {
+width: 120px;
+    padding: 10px;
+  background: #FFCC33;
+
+}
+
+/* 投稿カテゴリー検索 */
+/* アコーディオンメニュー */
+.category-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+.main_categories {
+  cursor: pointer;
+  font-size: 17px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+.sub_categories {
+  display: none;
+}
+.accordion-push {
+  cursor: pointer;
+}
+.accordion-push:after {
+  border-right: solid 2px gray;
+  border-top: solid 2px gray;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15px;
+  right: 15px;
+  transform: rotate(135deg);
+  transition: transform .3s ease-in-out;
+  width: 15px;
+  top: -2px;
+}
+.accordion-push-js.open .accordion-push::after {
+  transform: rotate(-45deg);
+}
+/* サブカテゴリーの部分 */
+.sub_category input{
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+
+.sub_category{
+ border-bottom: 1px solid gray;
+ width: 80%;
+ margin-bottom: 10px;
+ margin-left: 15px;
+}
+
+
 
 /* ユーザー検索 */
 .reserve_users_area{
@@ -308,6 +448,9 @@ display: flex;
 .subject_inner{
   display:none;
 }
+
+
+
 /* スクール予約一覧 */
 .entry_end_text{
     background-color: #494949;
