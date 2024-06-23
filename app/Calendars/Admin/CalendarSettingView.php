@@ -25,8 +25,8 @@ class CalendarSettingView{
     $html[] = '<th class="border">水</th>';
     $html[] = '<th class="border">木</th>';
     $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
+    $html[] = '<th class="saturday border">土</th>';
+    $html[] = '<th class="sunday border">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -40,7 +40,8 @@ class CalendarSettingView{
         $toDay = $this->carbon->format("Y-m-d");
 
        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">';
+        // 過去日の文字のクラス
+          $html[] = '<td class="  past-day border">';
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }

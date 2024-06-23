@@ -112,6 +112,7 @@ display: flex;
 .calendar-td{
   min-width:100px;
 }
+
 .day_part{
   color:#494949;
   font-size:12px;
@@ -547,7 +548,24 @@ margin-right: 10px;
   display: none;
 }
 
-/* スクール予約枠画面 */
+/* スクール予約枠登録画面 */
+.reserve_setting_container{
+  background: #FFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin: 100px;
+}
+.reserve_setting_month{
+    font-size: 20px;}
+
+
+th.saturday, td.saturday ,p.saturday{/* 文字色 */
+
+    color: #0000FF;
+
+}
+.sunday{
+    color: #dc3545;
+}
 /* スクール予約画面 */
 /* スクール予約確認 */
 /* スクール予約詳細確認画面 */

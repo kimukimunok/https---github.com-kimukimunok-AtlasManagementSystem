@@ -31,8 +31,8 @@ class CalendarView
         $html[] = '<th>水</th>';
         $html[] = '<th>木</th>';
         $html[] = '<th>金</th>';
-        $html[] = '<th>土</th>';
-        $html[] = '<th>日</th>';
+        $html[] = '<th class="saturday">土</th>';
+        $html[] = '<th class="sunday">日</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
         $html[] = '<tbody>';
@@ -47,9 +47,9 @@ class CalendarView
                 // もし過去日なら～
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                     // CSS記述にクラスのpast-dayがありそれを指定して、過去日の背景色をグレーに
-                    $html[] = '<td class="calendar-td past-day">';
+                    $html[] = '<td class="past-day border">';
                 } else {
-                    $html[] = '<td class="calendar-td ' . $day->getClassName() . '">';
+                    $html[] = '<td class="border ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
                 // 予約機能（選択されたものをコントローラー側に送る。）
@@ -97,7 +97,7 @@ class CalendarView
                     //今より前の日を指定する記述
                     if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                         //今より前の日付に受付終了を表示させる。
-                        $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                        $html[] = '<p class=" calendar_text m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                         // 先の予定の記述
                     } else {
