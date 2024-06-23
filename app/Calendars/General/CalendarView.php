@@ -31,8 +31,8 @@ class CalendarView
         $html[] = '<th>水</th>';
         $html[] = '<th>木</th>';
         $html[] = '<th>金</th>';
-        $html[] = '<th class="saturday">土</th>';
-        $html[] = '<th class="sunday">日</th>';
+        $html[] = '<th class="day-sat">土</th>';
+        $html[] = '<th class="day-sun">日</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
         $html[] = '<tbody>';
@@ -47,7 +47,8 @@ class CalendarView
                 // もし過去日なら～
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                     // CSS記述にクラスのpast-dayがありそれを指定して、過去日の背景色をグレーに
-                    $html[] = '<td class="past-day border">';
+                    $html[] =
+                    '<td class="past-day border ' . $day->getClassName() . '">';
                 } else {
                     $html[] = '<td class="border ' . $day->getClassName() . '">';
                 }

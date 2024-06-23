@@ -556,15 +556,8 @@ margin-right: 10px;
 }
 .reserve_setting_month{
     font-size: 20px;}
-
-
-th.saturday, td.saturday ,p.saturday{/* 文字色 */
-
-    color: #0000FF;
-
-}
-.sunday{
-    color: #dc3545;
+.setting_submit {
+  margin-top: 20px;
 }
 /* スクール予約画面 */
 /* スクール予約確認 */
