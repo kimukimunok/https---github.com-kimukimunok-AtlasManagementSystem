@@ -69,10 +69,11 @@ class CalendarView
                         $reservePart = "リモ3部";
                     }
                     // 今日より前の日程
-                    // 5/8ここの記述で過去予約していた日に予約部を表示させる記述が必要となる。変数→$reservePartかと→できた。
                     if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                         $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '</p>';
+
                         $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+
                         // 今日より後の日程
                         // ここでキャンセルボタンを表示する記述を書き、(予約されていればキャンセルボタンを表示させるようにして押したらキャンセル時のモーダル'(java)が出るようにする。)
                     } else {
