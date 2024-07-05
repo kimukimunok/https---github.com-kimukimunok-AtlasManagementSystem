@@ -128,7 +128,7 @@ display: flex;
 
 .day_part{
   color:#494949;
-  font-size:12px;
+  font-size:15px;
 }
 .adjust-area{
     margin-bottom: 10px;
@@ -149,6 +149,30 @@ display: flex;
     margin-top: 50px;
     padding: 30px;
     background:#FFF;
+
+}
+/* 予約詳細画面 */
+.reserve-detail-width{
+    width: 70%;
+}
+.reserve-detail{
+  background: #FFF;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.reserve-detail-in{
+    width: 913px;
+}
+.reserve-detail-th{
+  background: #03AAD2;
+  color: #fff;
+}
+.reserve-detail-user:nth-child(odd) {
+ background-color: #D7EEFF;
+}
+.reserve-detail-user:ntr-child(even){
+ background-color: #FFF;
 }
 
 /* モーダル */
@@ -449,6 +473,7 @@ width: 120px;
 
 /* 下のが各ユーザーの項目なので、これの周りにスペースを作る */
 .one_person{
+  padding: 10px;
   width:195px;
   height:195px;
   margin-right: 20px;

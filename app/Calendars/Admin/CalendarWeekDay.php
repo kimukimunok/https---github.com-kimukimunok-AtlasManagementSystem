@@ -46,7 +46,7 @@ class CalendarWeekDay
         // count($one_part->users) で、予約された部数の表示を行っている。
         $html[] = '<div class="text-left">';
         if ($one_part) {
-            $html[] = '<p class="day_part m-0 pt-1">
+            $html[] = '<p class="day_part m-0 pt-1 ">
         <a href="' . route(
                 'calendar.admin.detail',
                 ['date' => $ymd, 'part' => '1']
@@ -54,9 +54,6 @@ class CalendarWeekDay
          <span>' . count($one_part->users) . '</span>
       </p>';
         }
-else {
- $html[]='<p>あいうえお</p>';
-}
         if ($two_part) {
             $html[] = '<p class="day_part m-0 pt-1">
             <a href="' . route(
