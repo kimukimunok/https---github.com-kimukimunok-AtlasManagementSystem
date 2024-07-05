@@ -48,11 +48,13 @@ class CalendarView
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                     // 過去日の文字のクラス
                     $html[] =
-                    '<td class=" past-day border ' . $day->getClassName() . '">';
-                } else {
-                    $html[] = '<td class="border ' . $day->getClassName() . '">';
+                    '<td class="aaa space past-day border ' . $day->getClassName() . '">';
+                }
+                else {
+                    $html[] = '<td class="space border ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
+                // 予約部数の記載は以下の＄HTML（過去日に表示されて無いの何で）
                 $html[] = $day->dayPartCounts($day->everyDay());
                 $html[] = '</td>';
             }

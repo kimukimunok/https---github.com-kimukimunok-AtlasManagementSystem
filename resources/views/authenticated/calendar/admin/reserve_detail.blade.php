@@ -1,5 +1,5 @@
 @extends('layouts.sidebar')
-
+<!-- 予約詳細画面ここ -->
 @section('content')
 <!-- 予約確認画面の日毎のリンク先はここ、ここを編集して日や部やユーザーの表示を行う。 -->
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
@@ -18,18 +18,15 @@
                     <!-- 場所の追加 -->
                     <th class="w-25">場所</th>
                 </tr>
-                <!-- 変数がおかしくてエラー出ていたが、予約詳細(ユーザーIDと予約日と予約部)は変数reserveParsonに入っているからそれを入力 -->
                 @foreach($reservePersons as $reservePerson)
                 @foreach($reservePerson->users as $user)
                 <tr class="text-center">
-                    <!-- ここから記述 -->
                     <!-- ユーザーIDと苗字名前を取得している。 -->
                     <th>{{$user->id}}</th>
                     <th>{{$user->over_name}}{{$user->under_name}}</th>
                     <!-- 場所を表示する。現状リモートしか存在しないためリモートと記述 -->
                     <th>リモート</th>
                 </tr>
-                <!-- 予約が複数人いる場合の色合いの変更はまだ -->
                 @endforeach
                 @endforeach
                 <tr class="text-center">

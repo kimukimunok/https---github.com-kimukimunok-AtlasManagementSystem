@@ -29,7 +29,7 @@ class CalendarWeekDay
     {
         return $this->carbon->format("Y-m-d");
     }
-// 予約詳細ページの部数確認箇所
+    // 予約詳細ページの部数確認箇所
     function dayPartCounts($ymd)
     {
         $html = [];
@@ -54,7 +54,9 @@ class CalendarWeekDay
          <span>' . count($one_part->users) . '</span>
       </p>';
         }
-
+else {
+ $html[]='<p>あいうえお</p>';
+}
         if ($two_part) {
             $html[] = '<p class="day_part m-0 pt-1">
             <a href="' . route(
@@ -70,8 +72,8 @@ class CalendarWeekDay
       </p>';
         }
         $html[] = '</div>';
-// implodeメソッド→データを結合した文字列を取得する
-// $htmlで指定した文字列、「各部の表示」を表示している。
+        // implodeメソッド→データを結合した文字列を取得する
+        // $htmlで指定した文字列、「各部の表示」を表示している。
         return implode("", $html);
     }
 

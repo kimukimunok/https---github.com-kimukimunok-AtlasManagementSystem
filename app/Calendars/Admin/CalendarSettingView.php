@@ -47,9 +47,9 @@ class CalendarSettingView
 
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                     // 過去日の文字のクラス
-                    $html[] = '<td class="past-day border ' . $day->getClassName() . '">';
+                    $html[] = '<td class=" past-day border ' . $day->getClassName() . '">';
                 } else {
-                    $html[] = '<td class="border ' . $day->getClassName() . '">';
+                    $html[] = '<td class=" border ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
                 $html[] = '<div class="adjust-area">';

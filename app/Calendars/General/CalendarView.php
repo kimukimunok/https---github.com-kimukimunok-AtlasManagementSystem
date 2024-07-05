@@ -48,9 +48,9 @@ class CalendarView
                 if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
                     // CSS記述にクラスのpast-dayがありそれを指定して、過去日の背景色をグレーに
                     $html[] =
-                    '<td class="past-day border ' . $day->getClassName() . '">';
+                    '<td class="space past-day border ' . $day->getClassName() . '">';
                 } else {
-                    $html[] = '<td class="border ' . $day->getClassName() . '">';
+                    $html[] = '<td class="space border ' . $day->getClassName() . '">';
                 }
                 $html[] = $day->render();
                 // 予約機能（選択されたものをコントローラー側に送る。）
