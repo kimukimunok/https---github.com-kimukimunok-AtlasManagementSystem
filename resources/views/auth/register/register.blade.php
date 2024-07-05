@@ -17,7 +17,7 @@
 <body>
     <form action="{{ route('registerPost') }}" method="POST">
         <div class="login-background w-100 vh-100 d-flex flex-column" style="align-items:center; justify-content:center;">
-            <div class="register-area vh-75 border">
+            <div class="calendar_common register_area ">
                 <div class="register_form">
                     <div class="d-flex mt-3" style="justify-content:space-between">
                         <div class="" style="width:140px">
@@ -79,34 +79,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3 center">
+                <div class="mt-3 sex_block">
                     <ul>
                         @if ($errors->has('sex'))
                         <li class="error-message" style="font-size:13px">{{$errors->first('sex')}}</li>
                         @endif
                     </ul>
                     <li class="sex-select">
-                        <input type="radio" name="sex" class="sex" value="1">
-                        <label class="sex-type" style="font-size:13px"><b>男性</b></label>
+                        <input type="radio" name="sex" value="1">
+                        <label style="font-size:13px"><b>男性</b></label>
                     </li>
                     <li class="sex-select">
-                        <input type="radio" name="sex" class="sex" value="2">
-                        <label class="sex-type" style="font-size:13px"><b>女性</b></label>
+                        <input type="radio" name="sex" value="2">
+                        <label style="font-size:13px"><b>女性</b></label>
                     </li>
                     <li class="sex-select">
-                        <input type="radio" name="sex" class="sex" value="3">
-                        <label class="sex-type" style="font-size:13px"><b>その他</b></label>
+                        <input type="radio" name="sex" value="3">
+                        <label style="font-size:13px"><b>その他</b></label>
                     </li>
                 </div>
-                <div class="birth-day mt-3">
+                <div class="mt-3">
                     <ul>
                         @if ($errors->has('birth_day'))
                         <li class="error-message" style="font-size:13px">{{$errors->first('birth_day')}}</li>
                         @endif
                     </ul>
-                    <label class="d-block m-0 aa" style="font-size:13px"><b>生年月日</b></label>
-                    <span class="birth">
-                        <li class="birth-select">
+                    <label class="d-block m-0" style="font-size:13px"><b>生年月日</b></label>
+                    <span class="birth_day">
+                        <li class="birth_select">
                             <select class="old_year" name="old_year">
                                 <option value="none">-----</option>
                                 <option value="1985">1985</option>
@@ -136,10 +136,9 @@
                                 <option value="2009">2009</option>
                                 <option value="2010">2010</option>
                             </select>
-
-                            <label style="font-size:13px"><b>年</b></label>
                         </li>
-                        <li class="birth-select">
+                        <label class="birth_label" style="font-size:13px"><b>年</b></label>
+                        <li class="birth_select">
                             <select class="old_month" name="old_month">
                                 <option value="none">-----</option>
                                 <option value="01">1</option>
@@ -155,9 +154,9 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
-                            <label style="font-size:13px"><b>月</b></label>
                         </li>
-                        <li class="birth-select">
+                        <label class="birth_label" style="font-size:13px"><b>月</b></label>
+                        <li class="birth_select">
                             <select class="old_day" name="old_day">
                                 <option value="none">-----</option>
                                 <option value="01">1</option>
@@ -192,8 +191,8 @@
                                 <option value="30">30</option>
                                 <option value="31">31</option>
                             </select>
-                            <label style="font-size:13px"><b>日</b></label>
                         </li>
+                        <label class="birth_label" style="font-size:13px"><b>日</b></label>
                     </span>
                 </div>
                 <!-- 役職 -->

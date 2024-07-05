@@ -22,7 +22,7 @@
             <div>
                 <img class="Atlas-image" src="{{ asset('image/atlas-black.png')}}" alt="">
             </div>
-            <div class="login-area border vh-50">
+            <div class="calendar_common login_area  vh-50">
 
                 <div class="w-75 m-auto pt-5">
                     <label class="d-block m-0" style="font-size:13px;"><b>メールアドレス</b></label>
@@ -39,7 +39,7 @@
                 <div class="text-right m-3">
                     <input type="submit" class="btn btn-primary" value="ログイン">
                 </div>
-                <div class="text-center">
+                <div class="login_new text-center">
                     <a href="{{ route('registerView') }}">新規登録はこちら</a>
                 </div>
             </div>
