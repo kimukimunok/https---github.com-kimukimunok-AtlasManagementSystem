@@ -33,8 +33,8 @@
         </div>
         @endforeach
     </div>
-    <div class="other_area border w-25">
-        <div class="border m-4">
+    <div class="other_area ">
+        <div class="">
             <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
             <div class="keyword_search_btn">
 

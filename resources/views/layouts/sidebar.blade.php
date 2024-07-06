@@ -23,21 +23,24 @@
     <div class="d-flex">
         <div class="sidebar">
             @section('sidebar')
-            <p class="sidebarp1"><a href="{{ route('top.show') }}">マイページ</a></p>
-            <p><a href="/logout">ログアウト</a></p>
-            <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+
+
+
+            <p class="sidebarp1"><img class="pic1" src="{{ asset('image\家.png')}}" alt=""><a href="{{ route('top.show') }}">マイページ</a></p>
+            <p><img class="pic1" src="{{ asset('image\ログアウト.png')}}" alt=""><a href="/logout">ログアウト</a></p>
+            <p><img class="pic1" src="{{ asset('image\スクール予約.png')}}" alt=""><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
             <!-- ・スクール予約確認と・スクール枠登録を講師のみに表示させるようにしたい→講師のみがみられるようにauth設定をする。 -->
             <!-- 講師とそれ以外の違いは何か？＝役職が講師か生徒か→DBだと権限ナンバー？、生徒が”4”で講師が”1” -->
             @auth
             <!-- 講師(権限が1,2,3)つまり生徒:4以外の時authの範囲内を表示する。 -->
             <!-- !()で囲むと指定した以外を選択するとなる -->
             @if(!(Auth::user()->role == 4))
-            <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-            <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+            <p><img class="pic1" src="{{ asset('image\スクール予約確認.png')}}" alt=""><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+            <p><img class="pic1" src="{{ asset('image\スクール枠登録.png')}}" alt=""><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
             @endif
             @endAuth
-            <p><a href="{{ route('post.show') }}">掲示板</a></p>
-            <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+            <p><img class="pic1" src="{{ asset('image\掲示板.png')}}" alt=""><a href="{{ route('post.show') }}">掲示板</a></p>
+            <p><img class="pic1" src="{{ asset('image\ユーザー検索.png')}}" alt=""><a href="{{ route('user.show') }}">ユーザー検索</a></p>
             @show
         </div>
         <div class="main-container">
