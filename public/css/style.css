@@ -211,6 +211,8 @@ margin: 0px 10px 0px 10px;
     transform: translate(-50%,-50%);
     width: 60%;
 }
+.modal_can{
+    padding: 1px};
 /* 掲示板 */
 .sub_categories{
   display:none;
@@ -259,6 +261,9 @@ margin: 0px 10px 0px 10px;
 }
 
 /* 掲示板 詳細画面 */
+.post_user{
+    font-size: 14PX;
+}
 .category_area {
   background: #FFF;
   border-radius: 5px;
@@ -274,8 +279,13 @@ margin: 0px 10px 0px 10px;
 .detsail_post_title{
   font-size:14px;
 }
+.post_title{
+        margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+}
 .detsail_post{
-  font-size:12px;
+  font-size:14px;
   color:#9E9E9E;
 }
 .detail_inner_head{
@@ -347,26 +357,35 @@ margin: 0px 10px 0px 10px;
       color: #9E9E9E;
   font-weight: bold;
 }
+.post_comment_user{
+          color: #9E9E9E;
+  font-weight: bold;
+}
 /* 投稿内のコメントとハートマーク */
 
 .comment_container{
+
   background:#FFF;
    border-radius: 5px;
+}
+.comment_area_left{
+    padding-top:10px;
 }
 .comment_area {
     padding: 3rem;
 }
 .comment_area p,
 .comment_area input{
-  font-size:12px;
+  font-size:14px;
   font-weight:bold;
 }
 .comment_area textarea{
   height:300px;
   resize:none;
+  border-color: #999;
 }
 .comment_container span{
-  font-size:12px;
+  font-size:14px;
 }
 .post_status span{
   font-size:12px;

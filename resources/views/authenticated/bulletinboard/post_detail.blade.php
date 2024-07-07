@@ -30,7 +30,7 @@
                 </div>
                 @endif
                 <div class="padtop_15 contributor d-flex">
-                    <p>
+                    <p class="post_user">
                         <span>{{ $post->user->over_name }}</span>
                         <span>{{ $post->user->under_name }}</span>
                         さん
@@ -51,10 +51,10 @@
 
             <div class="p-3">
                 <div class="comment_container">
-                    <span class="">コメント</span>
+                    <span class="comment_container_comment">コメント</span>
                     @foreach($post->postComments as $comment)
-                    <div class="comment_area border-top">
-                        <p>
+                    <div class="comment_area_left border-top">
+                        <p class="post_comment_user">
                             <span>{{ $comment->commentUser($comment->user_id)->over_name }}</span>
                             <span>{{ $comment->commentUser($comment->user_id)->under_name }}</span>さん
                         </p>
@@ -68,11 +68,10 @@
     <div class="w-50 p-3">
         <div class="comment_container border m-5">
             <div class="comment_area">
-                <!--  -->
                 @if($errors->first('comment'))
                 <p class="error_message">{{ $errors->first('comment') }}</p>
                 @endif
-                <p class="m-0">コメントする</p>
+                <p class=" m-0">コメントする</p>
                 <textarea class="post_comment_textarea w-100" name="comment" form="commentRequest"></textarea>
                 <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
                 <input type="submit" class="btncomentpost btn btn-primary" form="commentRequest" value="投稿">
@@ -86,7 +85,7 @@
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
         <form action="{{ route('post.edit') }}" method="post">
-            <div class="w-100">
+            <div class="modal_can w-100">
                 <div class="modal-inner-title w-50 m-auto">
                     <input type="text" name="post_title" placeholder="タイトル" class="w-100">
                 </div>
