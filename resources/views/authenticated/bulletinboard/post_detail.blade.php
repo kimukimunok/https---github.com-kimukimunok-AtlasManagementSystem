@@ -15,13 +15,13 @@
                 @if (Auth::user()->id == $post->user_id)
                 <div class="detail_inner_head">
                     <div>
-                    </div>
-                    <div>
                         <!-- ここにサブカテゴリーの名称を表示させる記述をする。 -->
                         <!-- foreachにてsub_categoryを取得する。 -->
                         @foreach($post->subCategories as $sub_category)
                         <span class="posts_sub_category">{{ $sub_category->sub_category }}</span>
                         @endforeach
+                    </div>
+                    <div>
                         <!-- 投稿編集 -->
                         <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
                         <!-- 投稿削除-確認OK -->
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 @endif
-                <div class="contributor d-flex">
+                <div class="padtop_15 contributor d-flex">
                     <p>
                         <span>{{ $post->user->over_name }}</span>
                         <span>{{ $post->user->under_name }}</span>
@@ -67,7 +67,7 @@
     </div>
     <div class="w-50 p-3">
         <div class="comment_container border m-5">
-            <div class="comment_area p-3">
+            <div class="comment_area">
                 <!--  -->
                 @if($errors->first('comment'))
                 <p class="error_message">{{ $errors->first('comment') }}</p>
@@ -75,7 +75,7 @@
                 <p class="m-0">コメントする</p>
                 <textarea class="post_comment_textarea w-100" name="comment" form="commentRequest"></textarea>
                 <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
-                <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
+                <input type="submit" class="btncomentpost btn btn-primary" form="commentRequest" value="投稿">
                 <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
             </div>
         </div>

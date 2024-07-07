@@ -62,16 +62,16 @@
                 @endif
 
 
-                <p class="m-0">メインカテゴリー</p>
+                <p class="main_category_padding m-0">メインカテゴリー</p>
                 <input type="text" class="w-100" name="main_category_name" form="mainCategoryFrom" id="mainCategoryInput">
-                <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryFrom">
+                <input type="submit" value="追加" class="main_category_padding w-100 btn btn-primary p-0" form="mainCategoryFrom">
 
                 <!--サブカテゴリーを追加 -->
                 @if($errors->has('sub_category_name'))
                 <span class="error_message">{{ $errors->first('sub_category_name') }}</span>
                 @endif
-                <p class="mb-0">サブカテゴリー</p>
-                <select class="w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
+                <p class="main_category_padding mb-0">サブカテゴリー</p>
+                <select class=" w-100" form="subCategoryForm" name="main_category_id" id="mainCategoryId">
                     <!-- ---で選択無しを表示 -->
                     <option value="">---</option>
                     @foreach($main_categories as $main_category)
@@ -81,8 +81,8 @@
                 </select>
 
                 <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
-                <input type="text" class="w-100" name="sub_category_name" form="subCategoryForm" id="subCategoryInput">
-                <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryForm">
+                <input type="text" class="main_category_padding w-100" name=" sub_category_name" form="subCategoryForm" id="subCategoryInput">
+                <input type="submit" value="追加" class="main_category_padding w-100 btn btn-primary p-0" form="subCategoryForm">
             </div>
         </div>
         @endCan

@@ -18,6 +18,10 @@ li{
     box-shadow:0px 1px 9px grey;
     border-radius: 8px;
 }
+.padtop_15{
+    padding-top: 15px;
+}
+
 /* ログイン画面 OK*/
 .Atlas-image{
   display: block;
@@ -222,6 +226,7 @@ margin: 0px 10px 0px 10px;
 }
 .detail_container{
   background:#FFF;
+  border-radius: 5px;
 }
 .post_area{
     padding: 20px;
@@ -254,6 +259,13 @@ margin: 0px 10px 0px 10px;
 }
 
 /* 掲示板 詳細画面 */
+.category_area {
+  background: #FFF;
+  border-radius: 5px;
+}
+.main_category_padding{
+    margin-top: 15px;
+}
 .contributor{
   font-size:12px;
   color:#999;
@@ -300,7 +312,6 @@ margin: 0px 10px 0px 10px;
 .edit-modal-btn{
   justify-content: space-between;
 }
-/* 試しにCSS記述 */
 .posts_sub_category{
     margin:10px auto;
     font-size:14px;
@@ -314,6 +325,9 @@ margin: 0px 10px 0px 10px;
 .Post_Name{
       color: #9E9E9E;
   font-weight: bold;
+}
+.btncomentpost{
+    float: right;
 }
 /* 投稿内 */
 .Post_Title a {
@@ -337,6 +351,10 @@ margin: 0px 10px 0px 10px;
 
 .comment_container{
   background:#FFF;
+   border-radius: 5px;
+}
+.comment_area {
+    padding: 3rem;
 }
 .comment_area p,
 .comment_area input{
@@ -386,7 +404,7 @@ margin: 0px 10px 0px 10px;
   color: #fff;
   text-align: center;
   cursor: pointer;
-  padding: 5px 11px;
+  padding: 5px 10px;
 }
 .text_box {
 width: 250px;
