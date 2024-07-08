@@ -21,7 +21,6 @@ li{
 .padtop_15{
     padding-top: 15px;
 }
-
 /* ログイン画面 OK*/
 .Atlas-image{
   display: block;
@@ -125,20 +124,28 @@ margin: 0px 10px 0px 10px;
 .day-sun{
   color:#FF0000;
 }
-/* スクール予約の過去日のクラスこれかよー */
+/* 以下スクール予約 */
+/* スクール予約、予約画面、枠登録共通 */
+.calendar_back1{
+    background: #FFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius:6px;
+    margin: 120px;
+}
+.calendar_back2{
+    align-items:center;
+    justify-content:center;
+}
+
+
+
+    /* 共通ここまで */
 .past-day{
   background:#EEE;
 }
 .calendar-td{
   min-width:100px;
 }
-
-.calendar_width{
-      background: #FFF;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    margin: 110px;
-}
-
 .day_part{
   color:#494949;
   font-size:15px;

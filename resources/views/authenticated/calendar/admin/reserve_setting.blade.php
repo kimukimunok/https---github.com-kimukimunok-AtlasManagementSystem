@@ -1,13 +1,15 @@
 <!-- 予約枠登録画面 -->
 @extends('layouts.sidebar')
 @section('content')
-<div class="reserve_setting_container vh-100 d-flex" style="align-items:center; justify-content:center;">
-    <div class="reserve_setting_inner w-100 vh-100 border p-5">
-        <!-- 月のデータを取得する。 -->
-        <p class="reserve_setting_month text-center">{{ $calendar->getTitle() }}</p>
-        {!! $calendar->render() !!}
-        <div class="adjust-table-btn m-auto text-right">
-            <input type="submit" class="btn btn-primary setting_submit" value="登録" form="reserveSetting" onclick="return confirm('登録してよろしいですか？')">
+<div>
+        <div class="calendar_back1 calendar_back2 vh-100 d-flex">
+        <div class="reserve_setting_inner w-100 vh-100 border p-5">
+            <!-- 月のデータを取得する。 -->
+            <p class="reserve_setting_month text-center">{{ $calendar->getTitle() }}</p>
+            {!! $calendar->render() !!}
+            <div class="adjust-table-btn m-auto text-right">
+                <input type="submit" class="btn btn-primary setting_submit" value="登録" form="reserveSetting" onclick="return confirm('登録してよろしいですか？')">
+            </div>
         </div>
     </div>
 </div>

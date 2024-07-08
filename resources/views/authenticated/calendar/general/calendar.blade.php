@@ -1,8 +1,8 @@
 @extends('layouts.sidebar')
 <!-- スクール予約画面 -->
 @section('content')
-<div style="background:#ECF1F6;">
-    <div class="border calendar_width pt-5 pb-5" style="border-radius:5px; background:#FFF;">
+<div>
+    <div class="border calendar_back1 calendar_width pt-5 pb-5">
         <p class="text-center">{{ $calendar->getTitle() }}</p>
         <div class="w-75 m-auto" style="border-radius:5px;">
             <div class="">
