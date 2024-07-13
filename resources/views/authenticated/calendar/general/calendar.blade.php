@@ -3,8 +3,8 @@
 @section('content')
 <div>
     <div class="border calendar_back1 calendar_width pt-5 pb-5">
-        <p class="text-center">{{ $calendar->getTitle() }}</p>
-        <div class="w-75 m-auto" style="border-radius:5px;">
+        <p class="text-center" style="font-size:20px;">{{ $calendar->getTitle() }}</p>
+        <div class="calendar_reserve m-auto" style="border-radius:5px;">
             <div class="">
                 {!! $calendar->render() !!}
             </div>

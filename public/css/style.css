@@ -136,9 +136,15 @@ margin: 0px 10px 0px 10px;
     align-items:center;
     justify-content:center;
 }
-
-
-
+.calendar_reserve{
+    width: 90% !important;
+}
+.table thead th{
+    border: 1px solid #dee2e6;}
+.calendar_select{
+width:112px;
+border-radius:5px;
+}
     /* 共通ここまで */
 .past-day{
   background:#EEE;
