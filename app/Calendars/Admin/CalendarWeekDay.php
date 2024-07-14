@@ -44,7 +44,7 @@ class CalendarWeekDay
         // 1部2部3部とそれぞれに$htmlが存在するため、それぞれに変数を当て、予約されている部数を表示させる記述をおこなう。ちなみに、上の方で変数にどの部が対応しているかの記述が存在するため、（1部ならその日の部のID１のような。）下でcount(～)で記述した際に何部から取得するかわかる。
         // この際"とか'とか.の必要な位置に注意したい。
         // count($one_part->users) で、予約された部数の表示を行っている。
-        $html[] = '<div class="text-left">';
+        $html[] = '<div>';
         if ($one_part) {
             $html[] = '<p class="day_part m-0 pt-1 ">
         <a href="' . route(

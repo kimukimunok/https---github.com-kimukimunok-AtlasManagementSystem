@@ -298,6 +298,7 @@ C:\Users\goof-\AtlasManagementSystem\public\image
 １．スクール予約、予約確認、予約枠の白部分の共通化完了
 次、それぞれの画面の白枠の中を調整していく。
 スクール予約画面完了
+スクール予約確認画面完了
 
 
 

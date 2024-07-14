@@ -86,7 +86,7 @@ margin: 0px 10px 0px 10px;
 .sidebar{
     display: block;
   width:190px;
-  height:1000px;
+  height:1100px;
   background-color:#03AAD2;
   font-weight:bold;
 }
@@ -126,6 +126,9 @@ margin: 0px 10px 0px 10px;
 }
 /* 以下スクール予約 */
 /* スクール予約、予約画面、枠登録共通 */
+.calendar {
+    padding-bottom: 30px;
+}
 .calendar_back1{
     background: #FFF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -145,6 +148,11 @@ margin: 0px 10px 0px 10px;
 width:112px;
 border-radius:5px;
 }
+.calender_title {
+    font-size: 20px;
+    padding-top:30px;
+    padding-bottom:20px;
+}
     /* 共通ここまで */
 .past-day{
   background:#EEE;
@@ -153,8 +161,15 @@ border-radius:5px;
   min-width:100px;
 }
 .day_part{
+    justify-content: center;
   color:#494949;
   font-size:15px;
+}
+.day_part a{
+    padding-right: 20px;
+}
+.space{
+    padding-bottom: 10px;
 }
 .adjust-area{
     margin-bottom: 10px;
