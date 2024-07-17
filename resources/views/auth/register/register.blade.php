@@ -86,16 +86,16 @@
                         @endif
                     </ul>
                     <li class="sex-select">
-                        <input type="radio" name="sex" value="1">
-                        <label style="font-size:13px"><b>男性</b></label>
+                        <input type="radio" name="sex" class="sex" value="1">
+                        <label class="sex-type" style="font-size:13px"><b>男性</b></label>
                     </li>
                     <li class="sex-select">
-                        <input type="radio" name="sex" value="2">
-                        <label style="font-size:13px"><b>女性</b></label>
+                        <input type="radio" name="sex" class="sex" value="2">
+                        <label class="sex-type" style="font-size:13px"><b>女性</b></label>
                     </li>
                     <li class="sex-select">
-                        <input type="radio" name="sex" value="3">
-                        <label style="font-size:13px"><b>その他</b></label>
+                        <input type="radio" name="sex" class="sex" value="3">
+                        <label class="sex-type" style="font-size:13px"><b>その他</b></label>
                     </li>
                 </div>
                 <div class="mt-3">
