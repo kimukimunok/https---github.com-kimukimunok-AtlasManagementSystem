@@ -98,7 +98,7 @@
                     <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
                     <input type="submit" class="btn btn-primary d-block" value="編集">
                 </div>
-            </div>
+            </div>btn btn-primary d-blockbtn btn-primary d-block
             {{ csrf_field() }}
         </form>
     </div>

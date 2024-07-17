@@ -21,6 +21,9 @@ li{
 .padtop_15{
     padding-top: 15px;
 }
+.mtop{
+    margin-top: 10px;
+}
 /* ログイン画面 OK*/
 .Atlas-image{
   display: block;
@@ -203,7 +206,7 @@ border-radius:5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .reserve-detail-in{
-    width: 913px;
+    width: 100%;
 }
 .reserve-detail-th{
   background: #03AAD2;
@@ -670,7 +673,6 @@ display: inline-block;
 margin-right: 10px;
 }
 .subject_edit {
-  width: 200px;
   position: relative;
 }
 .subject_edit_btn {
@@ -691,11 +693,6 @@ margin-right: 10px;
 }
 .reserve_setting_month{
     font-size: 20px;}
-.setting_submit {
-  margin-top: 20px;
-  margin-left: 30px;
-
-}
 /* スクール予約画面 */
 /* スクール予約確認 */
 /* スクール予約詳細確認画面 */

@@ -41,7 +41,7 @@
             <!-- 閉じるボタン→ok -->
             <button type="button" class="js-modal-close btn btn-danger">閉じる</button>
             <!-- キャンセルボタンも必要 -->
-            <input type="submit" class="btn btn-primary d-block" value="キャンセル" form="deleteParts">
+            <input type="submit" class="btn btn-primary d-block mtop" value="キャンセル" form="deleteParts">
             {{csrf_field()}}
         </form>
     </div>

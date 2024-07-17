@@ -28,7 +28,7 @@
                             <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
                         </div>
                         @endforeach
-                        <input type="submit" value="編集" class="btn btn-primary">
+                        <input type="submit" value="登録" class="btn btn-primary">
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
                         {{ csrf_field() }}
                     </form>

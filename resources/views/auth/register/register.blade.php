@@ -104,7 +104,7 @@
                         <li class="error-message" style="font-size:13px">{{$errors->first('birth_day')}}</li>
                         @endif
                     </ul>
-                    <label class="d-block m-0" style="font-size:13px"><b>生年月日</b></label>
+                    <label class="d-block m-0 aa" style="font-size:13px"><b>生年月日</b></label>
                     <span class="birth_day">
                         <li class="birth_select">
                             <select class="old_year" name="old_year">
