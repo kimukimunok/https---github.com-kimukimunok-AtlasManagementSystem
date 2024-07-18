@@ -10,10 +10,14 @@
         <div class="post_area border w-75 m-auto">
             <p class="Post_Name"><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
             <p class="Post_Title"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
-
-
-            <div class="sub_category_comment d-flex ">
-                <p class="sub_category_name"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+            <div class="sub_category_comment d-flex">
+                @foreach($post->subCategories as $sub_category)
+                <p class="sub_category_name">
+                    <!-- 修正箇所、投稿一覧のサブカテゴリーバッジがサブカテゴリーじゃなくてタイトルが表示されている。（$post->post_titleとなってた。） -->
+                    <!-- foreachでデータを取得、サブカテゴリーズからではなく、ポストの中のサブカテゴリーを取得するから、記述は$post->subCategories as $sub_category-->
+                    <a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $sub_category->sub_category }}</a>
+                    @endforeach
+                </p>
                 <div class="post_bottom_area d-flex">
                     <div class="d-flex post_status">
                         <div class="mr-5">
