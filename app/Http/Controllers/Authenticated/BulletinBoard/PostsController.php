@@ -132,11 +132,9 @@ class PostsController extends Controller
     public function subCategoryCreate(SubCategoryRequest $request)
     // public function subCategoryCreate(Request $request)
     {
-
         // 元々あるメインカテゴリー(ID)を選び取得して、サブカテゴリーを送るようにしたい。
         $mainCategoryId = $request->input('main_category_id');
         $subCategoryName = $request->input('sub_category_name');
-
         // サブカテゴリーへ追加、登録
         $subCategory = new SubCategory();
         $subCategory->main_category_id = $mainCategoryId;
@@ -145,8 +143,6 @@ class PostsController extends Controller
         $subCategory->save();
         return redirect()->route('post.input');
     }
-
-
     // 投稿へのコメントを作成
     public function commentCreate(CommentRequest $request)
     {

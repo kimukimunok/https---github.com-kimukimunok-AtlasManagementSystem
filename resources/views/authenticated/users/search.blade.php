@@ -77,12 +77,12 @@
                     <option value="DESC">降順</option>
                 </select>
             </div>
+
             <!-- 右側サイドバーの検索条件側 -->
             <div class="sidebar_search">
                 <p class="m-0 search_conditions accordion-push-js ">
                     <span class="search_border accordion-push">検索条件の追加
-                    </span>
-                </p>
+                    </span></p>
                 <div class="search_conditions_inner">
                     <div>
                         <label>性別</label>
@@ -92,8 +92,6 @@
                             <span><b>その他</b></span><input type="radio" name="sex" value="3" form="userSearchRequest">
                         </p>
                     </div>
-
-
                     <div class="search_role">
                         <label>権限</label>
                         <select name="role" form="userSearchRequest" class="engineer">
@@ -104,7 +102,6 @@
                             <option value="4" class="">生徒</option>
                         </select>
                     </div>
-
                     <div class="selected_engineer">
                         <label>選択科目</label>
                     </div>

@@ -79,7 +79,7 @@
                     <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
                     @endforeach
                 </select>
-
+                <!-- 以下サブカテゴリーのテキストボックス画面 -->
                 <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryForm">{{ csrf_field() }}</form>
                 <input type="text" class="main_category_padding w-100" name=" sub_category_name" form="subCategoryForm" id="subCategoryInput">
                 <input type="submit" value="追加" class="main_category_padding w-100 btn btn-primary p-0" form="subCategoryForm">

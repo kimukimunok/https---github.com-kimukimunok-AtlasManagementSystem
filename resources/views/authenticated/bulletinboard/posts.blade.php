@@ -15,7 +15,7 @@
                 <p class="sub_category_name">
                     <!-- 修正箇所、投稿一覧のサブカテゴリーバッジがサブカテゴリーじゃなくてタイトルが表示されている。（$post->post_titleとなってた。） -->
                     <!-- foreachでデータを取得、サブカテゴリーズからではなく、ポストの中のサブカテゴリーを取得するから、記述は$post->subCategories as $sub_category-->
-                    <a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $sub_category->sub_category }}</a>
+                    <a style="color: #FFF;">{{ $sub_category->sub_category }}</a>
                     @endforeach
                 </p>
                 <div class="post_bottom_area d-flex">
@@ -25,6 +25,7 @@
                             <i class="fa fa-comment"></i><span>{{$post->postComments->count()}}</span>
                         </div>
                         <div>
+                            <!-- いいねの数を表示 -->
                             @if(Auth::user()->is_Like($post->id))
                             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{$post->likes->count()}}</span></p>
                             @else
@@ -41,7 +42,6 @@
         <div class="">
             <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
             <div class="keyword_search_btn">
-
                 <span class="search_container">
                     <input class="text_box" type="text" placeholder="キーワードを入力" name="keyword" form="postSearchRequest">
                     <input class="keyword-btn" type="submit" value="検索" form="postSearchRequest"></span>
