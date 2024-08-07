@@ -3,7 +3,6 @@
 1.デバッグバーの挿入
 ・laravelDebugbarを導入、コマンドプロンプトで「composer require barryvdh/laravel-debugbar」で実行
 2.初期データの登録
-忘れた…
 
 #機能追加(共通)
 1.usersテーブルとsubjectテーブルのリレーションを定義
@@ -13,7 +12,7 @@ users.phpとsubject.php内にリレーションの記述をする。順番は（
 参考サイト→https://moripro.net/laravel-hasmany-belongsto/
 
 2.ユーザーの新規登録画面にバリデーションを追加
-新規登録画面「RegisterRequest」
+新規登録画面のバリデーション記述「RegisterRequest」
 コマンドプロンプトで「php artisan make:request RegisterRequest」でバリデーション用のクラスを作成
 public function authorize()のreturn false;をtureにする。じゃないとバリデーションが表示されない。
 public function rules()｛この中｝この中にバリデーションメッセージを記入する。

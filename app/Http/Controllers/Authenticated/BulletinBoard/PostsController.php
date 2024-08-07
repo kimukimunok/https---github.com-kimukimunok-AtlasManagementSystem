@@ -81,7 +81,6 @@ class PostsController extends Controller
         $post = Post::with('user', 'postComments')->findOrFail($post_id);
         return view('authenticated.bulletinBoard.post_detail', compact('post'));
     }
-
     public function postInput()
     {
         $main_categories = MainCategory::get();

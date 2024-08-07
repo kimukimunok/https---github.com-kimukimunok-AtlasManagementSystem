@@ -41,8 +41,8 @@
                 <span class="error_message"> {{$errors->first('post_title')}}</span>
                 @endif
 
-                <div class="detsail_post_title">{{ $post->post_title }}</div>
-                <div class="mt-3 detsail_post">{{ $post->post }}</div>
+                <div class="detail_post_title">{{ $post->post_title }}</div>
+                <div class="mt-3 detail_post">{{ $post->post }}</div>
             </div>
             @if ($errors->has('post_body'))
             <span class="error_message">{{$errors->first('post_body')}}

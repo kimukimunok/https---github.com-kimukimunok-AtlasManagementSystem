@@ -89,7 +89,6 @@ margin: 0px 10px 0px 10px;
 .sidebar{
     display: block;
   width:190px;
-  height:1100px;
   background-color:#03AAD2;
   font-weight:bold;
 }
@@ -304,7 +303,7 @@ border-radius:5px;
   color:#999;
   font-weight:bold;
 }
-.detsail_post_title{
+.detail_post_title{
   font-size:14px;
 }
 .post_title{
@@ -312,7 +311,7 @@ border-radius:5px;
     font-family: inherit;
     font-size: inherit;
 }
-.detsail_post{
+.detail_post{
   font-size:14px;
   color:#9E9E9E;
 }

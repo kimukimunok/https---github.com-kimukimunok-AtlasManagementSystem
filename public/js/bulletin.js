@@ -6,9 +6,12 @@
     $(this).removeClass('like_btn');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
-    var countInt = Number(count);
+      var countInt = Number(count);
+      //画面更新の必要がないようにする ajax
+    //   ajaxとかjsonとかが当たり前になってくると思う。
     $.ajax({
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       method: "post",
       url: "/like/post/" + post_id,
       data: {
